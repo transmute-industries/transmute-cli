@@ -1,0 +1,8 @@
+node_modules
+firebase.json
+.firebaserc
+functions
+
+# THIS SHOULD ALWAYS BE UNCOMMENTED
+# NEVER CHECK .env INTO VERSION CONTROL
+# secret.env
