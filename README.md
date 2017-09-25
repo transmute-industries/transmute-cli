@@ -10,7 +10,7 @@ Combines:
 ```
 $ npm install
 $ npm run start
-$ npm run migrate transmute secret.env 
+$ npm run migrate transmute ./secret.env 
 $ npm run mask secret.env 
-$ npm run js-config transmute secret.env 
+$ npm run js-config transmute ./secret.env 
 ```

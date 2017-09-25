@@ -2,7 +2,7 @@
 
 const functions = require('firebase-functions');
 
-const SECRET_ENV_PATH = 'secret.env';
+const SECRET_ENV_PATH = './secret.env';
 let IS_LOCAL = true;
 
 try {
