@@ -24,9 +24,9 @@ const functions = require('firebase-functions');
 
 const SECRET_ENV_PATH = '${dotenv_path}';
 let IS_LOCAL = true;
-
+let config = null;
 try {
-    let config = functions.config();
+    config = functions.config();
     IS_LOCAL = false;
 } catch (e) {
     require('dotenv').config({ path: SECRET_ENV_PATH });
@@ -40,7 +40,7 @@ module.exports = {
         
         `
 
-        fs.writeFile('environment.constants.js', result, (err) => {
+        fs.writeFile('./functions/environment.constants.js', result, (err) => {
             if (err) return console.log(err);
             callback();
         });

@@ -9,7 +9,10 @@
     "start": "node ./src/index.js",
     "migrate": "node ./src/index.js migrate -- ",
     "mask": "node ./src/index.js mask -- ",
-    "js-config": "node ./src/index.js js-config -- "
+    "js-config": "node ./src/index.js js-config -- ",
+    "firebase:config" : "node ./src/index.js js-config transmute ./environment.secret.env",
+    "firebase:migrate": "node ./src/index.js migrate transmute ./environment.secret.env",
+    "firebase:deploy": "firebase deploy --only functions"
   },
   "repository": {
     "type": "git",
