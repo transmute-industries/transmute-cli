@@ -1,11 +1,13 @@
+#!/usr/bin/env node
+
 const vorpal = require('vorpal')();
 
 vorpal
-.command('echo', 'test code gen')
-.action((args, callback) => {
-    var echo = require('./echo/echo')
-    echo(callback)
-});
+    .command('echo', 'test code gen')
+    .action((args, callback) => {
+        var echo = require('./echo/echo')
+        echo(callback)
+    });
 
 vorpal
     .command('migrate [prefix] [dotenv]', 'converts .env to firebase functions:config:set command and executes it. See https://firebase.google.com/docs/functions/config-env')

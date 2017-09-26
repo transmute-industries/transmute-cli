@@ -8,6 +8,7 @@ Combines:
 - https://www.npmjs.com/package/dotenv
 
 ```
+$ npm config set prefix /usr/local
 $ npm install -g firebase-tools
 $ npm install
 $ firebase init
