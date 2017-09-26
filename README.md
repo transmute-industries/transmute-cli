@@ -8,7 +8,9 @@ Combines:
 - https://www.npmjs.com/package/dotenv
 
 ```
+$ npm install -g firebase-tools
 $ npm install
+$ firebase init
 $ npm run start
 $ npm run migrate transmute ./environment.secret.env
 $ npm run mask ./environment.secret.env

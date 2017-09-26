@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "clean": "rm environment.example.env environment.constants.js",
+    "serve": "node ./functions/server.js",
     "start": "node ./src/index.js",
     "migrate": "node ./src/index.js migrate -- ",
     "mask": "node ./src/index.js mask -- ",
