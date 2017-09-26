@@ -1,8 +1,11 @@
 {
   "name": "transmute-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "src/index.js",
+  "bin": {
+    "transmute": "./src/index.js"
+  },
   "scripts": {
     "cleanup": "rm environment.example.env ./functions/environment.constants.js",
     "serve": "node ./functions/server.js",
@@ -10,7 +13,7 @@
     "migrate": "node ./src/index.js migrate -- ",
     "mask": "node ./src/index.js mask -- ",
     "js-config": "node ./src/index.js js-config -- ",
-    "firebase:config" : "node ./src/index.js js-config transmute ./environment.secret.env ./functions/environment.constants.js",
+    "firebase:config": "node ./src/index.js js-config transmute ./environment.secret.env ./functions/environment.constants.js",
     "firebase:migrate": "node ./src/index.js migrate transmute ./environment.secret.env",
     "firebase:deploy": "firebase deploy --only functions"
   },
