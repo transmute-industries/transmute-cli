@@ -1,6 +1,6 @@
-# Firebase Env
+# Transmute CLI
 
-A tool for managing environment variables.
+Work in progress pulling out cli from transmute framework.
 
 Combines:
 
@@ -10,7 +10,7 @@ Combines:
 ```
 $ npm install
 $ npm run start
-$ npm run migrate transmute ./secret.env 
-$ npm run mask secret.env 
-$ npm run js-config transmute ./secret.env 
+$ npm run migrate transmute ./environment.secret.env
+$ npm run mask ./environment.secret.env
+$ npm run js-config transmute ./environment.secret.env
 ```

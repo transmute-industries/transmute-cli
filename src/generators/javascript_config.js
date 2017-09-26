@@ -40,7 +40,7 @@ module.exports = {
         
         `
 
-        fs.writeFile('firebase_env.constants.js', result, (err) => {
+        fs.writeFile('environment.constants.js', result, (err) => {
             if (err) return console.log(err);
             callback();
         });

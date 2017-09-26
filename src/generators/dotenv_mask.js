@@ -9,7 +9,7 @@ module.exports = (dotenv_path, callback) => {
             let [key, value] = line.split('=')
             result += `${key}='EXAMPLE' \n`
         })
-        fs.writeFile('example.env', result, (err) => {
+        fs.writeFile('environment.example.env', result, (err) => {
             if (err) return console.log(err);
             callback();
         });
