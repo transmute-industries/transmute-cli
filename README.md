@@ -14,5 +14,6 @@ $ firebase init
 $ npm run start
 $ npm run migrate transmute ./environment.secret.env
 $ npm run mask ./environment.secret.env
-$ npm run js-config transmute ./environment.secret.env
+$ npm run js-config transmute ./environment.secret.env ./functions/environment.constants.js
 ```
+

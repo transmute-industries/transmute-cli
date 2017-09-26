@@ -1,10 +1,7 @@
 
 const fs = require('fs');
 
-// 
-// console.log(process.env)
-
-module.exports = (prefix, dotenv_path, callback) => {
+module.exports = (prefix, dotenv_path, output_path, callback) => {
     fs.readFile(dotenv_path, 'utf8', (err, envFile) => {
         let lines = envFile.split('\n')
         
@@ -40,7 +37,7 @@ module.exports = {
         
         `
 
-        fs.writeFile('./functions/environment.constants.js', result, (err) => {
+        fs.writeFile(output_path, result, (err) => {
             if (err) return console.log(err);
             callback();
         });

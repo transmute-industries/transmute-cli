@@ -22,10 +22,10 @@ vorpal
     });
 
 vorpal
-    .command('js-config [prefix] [dotenv]', 'build a js config module from a .env')
+    .command('js-config [prefix] [dotenv] [output]', 'build a js config module from a .env')
     .action((args, callback) => {
         var jsConfigGenerator = require('./generators/javascript_config')
-        jsConfigGenerator(args.prefix, args.dotenv, callback);
+        jsConfigGenerator(args.prefix, args.dotenv, args.output, callback);
     });
 
 vorpal
