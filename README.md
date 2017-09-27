@@ -1,12 +1,14 @@
 # Transmute CLI
 
-Work in progress pulling out cli from transmute framework.
+Work in progress CLI.
 
-Combines:
+#### Getting Started
 
-- https://firebase.google.com/docs/functions/config-env
-- https://www.npmjs.com/package/dotenv
+```
+$ npm install -g transmute-cli@latest
+```
 
+#### Dev Commands
 ```
 $ npm config set prefix /usr/local
 $ npm install -g firebase-tools
@@ -18,3 +20,7 @@ $ npm run mask ./environment.secret.env
 $ npm run js-config transmute ./environment.secret.env ./functions/environment.constants.js
 ```
 
+#### Reading
+
+- https://firebase.google.com/docs/functions/config-env
+- https://www.npmjs.com/package/dotenv
