@@ -1,13 +1,20 @@
-var http = require("http");
-var url = require("url");
-var fs = require("fs");
-var path = require("path");
+const http = require("http");
+const url = require("url");
+const fs = require("fs");
+const path = require("path");
 const querystring = require("querystring");
 
-const HOST = process.env.TRANSMUTE_API_HOST || '0.0.0.0';
-const PORT = process.env.TRANSMUTE_API_PORT || '3001';
+let cwd = process.cwd();
+let env, functions;
+try {
+    functions = require(path.join(cwd, 'functions/src'))
+    env = require(path.join(cwd, 'environment.constants'))
+} catch (e) {
+    throw 'expect serve to be run from a diretory with functions and environment.constants.js in it.'
+}
 
-const functions = require('./src')
+const HOST = env.TRANSMUTE_API_HOST || '0.0.0.0';
+const PORT = env.TRANSMUTE_API_PORT || '3001';
 
 const extractParams = async (request) => {
     var pathname = url.parse(request.url).pathname;
@@ -33,7 +40,8 @@ const extractParams = async (request) => {
     return {
         name: pathname,
         query: querystring.parse(url.parse(request.url).query),
-        body: requestBodyJson
+        body: requestBodyJson,
+        env
     }
 }
 
@@ -42,14 +50,25 @@ async function onRequest(request, response) {
     var functionName = pathname.split("/")[1];
     let headers = { "Content-Type": "application/json" };
     if (functionName === 'favicon.ico') {
-        fs.createReadStream(path.join(__dirname,'..', 'favicon.ico')).pipe(response);
+        fs.createReadStream(path.join(__dirname, '..', '..', 'favicon.ico')).pipe(response);
     } else {
         if (functions[functionName]) {
             let functionParams = await extractParams(request)
             let functionResponse = await functions[functionName](functionParams)
+
             console.log(functionParams, functionResponse);
-            response.writeHead(200, headers);
-            response.end(JSON.stringify(functionResponse));
+
+            if (!functionResponse.redirect) {
+                response.writeHead(functionResponse.status, headers);
+                response.end(JSON.stringify(functionResponse));
+            } else {
+                response.writeHead(302, {
+                    'Location': functionResponse.redirect
+                    //add other headers here...
+                });
+                response.end();
+            }
+
         } else {
             console.log('function: "', functionName, '" not found.');
             response.writeHead(404, headers);

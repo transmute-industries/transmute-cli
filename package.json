@@ -8,7 +8,7 @@
   },
   "scripts": {
     "cleanup": "rm environment.example.env ./functions/environment.constants.js",
-    "serve": "node ./functions/server.js",
+    "serve": "node ./src/index.js serve",
     "start": "node ./src/index.js",
     "migrate": "node ./src/index.js migrate -- ",
     "mask": "node ./src/index.js mask -- ",
@@ -29,6 +29,8 @@
   "homepage": "https://github.com/transmute-industries/transmute-cli#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "firebase-admin": "^5.3.0",
+    "firebase-functions": "^0.6.3",
     "global": "^4.3.2",
     "shelljs": "^0.7.8",
     "transmute-cli": "^0.1.1",

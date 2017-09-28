@@ -10,6 +10,13 @@ vorpal
     });
 
 vorpal
+    .command('serve ', 'run cloud functions server with env locally.')
+    .action((args, callback) => {
+        var serve = require('./serve/serve')
+        serve(callback)
+    });
+
+vorpal
     .command('migrate [prefix] [dotenv]', 'converts .env to firebase functions:config:set command and executes it. See https://firebase.google.com/docs/functions/config-env')
     .action((args, callback) => {
         var migrateFirebase = require('./migrators/migrate_firebase')
