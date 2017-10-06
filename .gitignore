@@ -1,6 +1,6 @@
-node_modules
-firebase.json
-.firebaserc
-
-# NEVER CHECK environment.secret.env INTO VERSION CONTROL
-# environment.secret.env
+/coverage
+/lib
+/lib-esm
+/node_modules
+/typings
+/umd
