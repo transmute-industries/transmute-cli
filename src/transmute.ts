@@ -7,7 +7,6 @@ import TransmuteCLI from './index'
 vorpal
     .command('echo [message]', 'echo a message')
     .action((args, callback) => {
-        console.log(args)
         TransmuteCLI.echo(args.message, callback)
     });
 

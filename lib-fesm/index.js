@@ -97,7 +97,8 @@ exports.default = instance;
 // import env from '../../environment.constants'
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (message, callback) => {
-    callback(message);
+    console.log(message);
+    callback();
 };
 
 
