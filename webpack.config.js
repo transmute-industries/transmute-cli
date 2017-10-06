@@ -84,6 +84,7 @@ const config = (env = DEFAULT_ENV) => {
   ])
 
   const UMDConfig = {
+    target: 'node',
     // These are the entry point of our library. We tell webpack to use
     // the name we assign later, when creating the bundle. We also use
     // the name to filter the second entry point for applying code

@@ -8,24 +8,18 @@ Work in progress CLI.
 $ npm install -g transmute-cli@latest 
 ```
 
-#### OSX
-
-```
-yarn config set prefix /usr/local/
-yarn global remove transmute-cli
-yarn global add transmute-cli
-```
-
 #### Dev Commands
 ```
-$ npm config set prefix /usr/local
 $ npm install -g firebase-tools
 $ npm install
 $ firebase init
-$ npm run start
-$ npm run migrate transmute ./environment.secret.env
-$ npm run mask ./environment.secret.env
-$ npm run js-config transmute ./environment.secret.env ./functions/environment.constants.js
+$ yarn test-bin gen-env js transmute ./environment.secret.env ./environment.constants.js
+$ yarn test-bin gen-env ts transmute ./environment.secret.env ./environment.constants.ts
+$ yarn test-bin gen-env mask transmute ./environment.secret.env ./environment.example.env
+$ yarn test-bin mig-env firebase transmute ./environment.secret.env
+$ yarn test-bin install globals
+$ yarn test-bin serve
+
 ```
 
 #### Reading

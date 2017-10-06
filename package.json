@@ -33,8 +33,8 @@
     "node": ">=6.9"
   },
   "scripts": {
-    "test-bin": "transmute",
-    "fuck-it": "yarn cleanup && yarn build && git add -A && git commit -m 'clean' --no-verify && npm version patch && npm publish",
+    "test-bin": "node lib/transmute.js",
+    "fuck": "yarn cleanup && yarn build && git add -A && git commit -m ':rocket:' --no-verify && npm version patch && npm publish && npm install transmute-cli@latest -g",
     "cleanup": "shx rm -rf umd lib lib-esm lib-fesm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
     "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack && webpack --env.prod",
@@ -70,30 +70,23 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "npm run prettier:ts -- --write",
-      "git add"
-    ]
+    "src/**/*.{ts,tsx}": ["npm run prettier:ts -- --write", "git add"]
   },
   "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
+    "roots": ["<rootDir>/src"],
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json",
-      "node"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js", "json", "node"],
     "mapCoverage": true,
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/lib/",
+      "<rootDir>/src/generate",
+      "<rootDir>/src/migrate",
+      "<rootDir>/src/install",
+      "<rootDir>/src/serve",
       "<rootDir>/lib-esm/",
       "<rootDir>/umd/",
       "<rootDir>/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
