@@ -2,10 +2,18 @@
 
 Work in progress CLI.
 
-#### Getting Started
+### Getting Started
 
 ```
-$ npm install -g transmute-cli@latest
+$ npm install -g transmute-cli@latest 
+```
+
+#### OSX
+
+```
+yarn config set prefix /usr/local/
+yarn global remove transmute-cli
+yarn global add transmute-cli
 ```
 
 #### Dev Commands

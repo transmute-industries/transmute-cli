@@ -1,13 +1,13 @@
 {
   "name": "transmute-cli",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "transmute framework cli",
   "main": "umd/index.js",
   "module": "lib/index.js",
   "es2015": "lib-esm/index.js",
   "typings": "typings/index.d.ts",
   "bin": {
-    "transmute": "./lib/transmute.js"
+    "transmute": "lib/transmute.js"
   },
   "repository": {
     "type": "git",
