@@ -72,30 +72,33 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./src/echo/echo.ts
-
-// import env from '../../environment.constants'
-/* harmony default export */ var echo_defaultExport = ((message, callback) => {
-    callback(message);
-});
-
-// CONCATENATED MODULE: ./src/index.ts
-
-
-class src_TransmuteCLI {
+Object.defineProperty(exports, "__esModule", { value: true });
+const echo_1 = __webpack_require__(2);
+class TransmuteCLI {
     constructor() {
-        this.echo = echo_defaultExport;
+        this.echo = echo_1.default;
     }
 }
-/* harmony export (immutable) */ __webpack_exports__["TransmuteCLI"] = src_TransmuteCLI;
+exports.TransmuteCLI = TransmuteCLI;
+const instance = new TransmuteCLI();
+exports.default = instance;
 
-const instance = new src_TransmuteCLI();
-/* harmony default export */ __webpack_exports__["default"] = (instance);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// import env from '../../environment.constants'
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = (message, callback) => {
+    callback(message);
+};
 
 
 /***/ })
