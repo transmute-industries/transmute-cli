@@ -1,6 +1,6 @@
 {
   "name": "transmute-cli",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "transmute framework cli",
   "main": "umd/index.js",
   "module": "lib/index.js",
