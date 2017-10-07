@@ -1,5 +1,7 @@
 const path = require("path");
 
+const T = require("transmute-framework").default.init();
+
 // import TransmuteFramework from '../../TransmuteFramework'
 
 // const accessControlArtifacts = require('../../../build/contracts/RBAC')
@@ -27,6 +29,15 @@ const path = require("path");
 //     })
 
 export default vorpal => {
+  vorpal
+    .command("eventstore list", "List eventstores from the factory.")
+    .action(async (args, callback) => {
+      let addresses = await T.getAccounts();
+      let address = addresses[0];
+      console.log(address);
+      callback();
+    });
+
   // vorpal
   //     .command('eventstore create', 'Create an EventStore')
   //     .action((args, callback) => {

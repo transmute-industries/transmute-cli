@@ -2,16 +2,32 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
+const _ = require("lodash");
 const querystring = require("querystring");
 
 let cwd = process.cwd();
 let env, functions;
 try {
-  functions = require(path.join(cwd, "functions/src"));
-  env = require(path.join(cwd, "environment.constants"));
+  functions = require(path.join(cwd, "./functions/src"));
 } catch (e) {
-  throw "expect serve to be run from a diretory with functions and environment.constants.js in it.";
+  throw Error(e);
 }
+
+try {
+  env = require(path.join(cwd, "./environment.constants"));
+} catch (e) {
+  throw "expect serve to be run from a directory with environment.constants.js in it.";
+}
+
+const admin = require("firebase-admin");
+
+admin.initializeApp({
+  credential: admin.credential.cert(
+    require("../transmute-framework-ae7ad1443e90.json")
+  )
+});
+
+const db = admin.firestore();
 
 const HOST = env.TRANSMUTE_API_HOST || "0.0.0.0";
 const PORT = env.TRANSMUTE_API_PORT || "3001";
@@ -43,6 +59,8 @@ const extractParams = async request => {
     name: pathname,
     query: querystring.parse(url.parse(request.url).query),
     body: requestBodyJson,
+    db,
+    admin,
     env
   };
 };
@@ -60,7 +78,8 @@ async function onRequest(request, response) {
       let functionParams = await extractParams(request);
       let functionResponse = await functions[functionName](functionParams);
 
-      console.log(functionParams, functionResponse);
+      // console.log(request.url);
+      // console.log(_.omit(functionParams, "db", "admin"), functionResponse);
 
       if (!functionResponse.redirect) {
         response.writeHead(functionResponse.status, headers);

@@ -1,7 +1,6 @@
 const path = require("path");
 
 const T = require("transmute-framework").default.init();
-let { web3, EventStoreContract, EventStoreFactoryContract } = T;
 let { getCachedReadModel } = T.EventStore;
 
 const _ = require("lodash");
