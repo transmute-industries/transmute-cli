@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "transmute-framework",
+  "private_key_id": "e82897ed8bb79787d9a5f9427979b8431d27825b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCn9Z2KBaQQT7Yp\nh+uD7Vl5Qx2n/UkuK0gGhdruxs3D7H9GDqVE5ODTt6tMW17f2QJceMKf04xJi30O\nnm91ICuxlFyDWy8Lo80gLNUFlGVgdgUSw+XMT5+saelUp4orDkwzeXuEYA2GwIZ1\nDqWy4uIAoUqbvzmHdnDThr0mXXxaxTpuEm5B+wvG8/g86E5WUbNPnsrGRu3+7XgU\n2SI4+NUFlmM+LNmMYfy/WyEgyJMV+5zpcg+HBaAq1K9EymnORGE5kng2IjQ1+E+W\nWiLDXKnev1r5lEHti1AqKIF0tbescpOD/YDdJFlMXOZ1R4Qrp19BvS4nFGDMNrdg\nMtgceAIhAgMBAAECggEACwhuVc+zDENAMxAzn1HrC7Ul8JAJy5eaPptyWzcB8znI\nzoBNyO3D+wRYo0ZpQAkQR6TDHB6YW4hnKZustKPtWtflD9fgikIzSkbHo3sxAZof\nETF/GeGtGnVGl4H96IAi70qum2531P82ld/lcI/IysPNk9eG3ugf1zVFnYyMi6XH\nvM9WTO5HQK94FULisyEFOaa+vsKcHjb4Ogtq0eH9c7+5eZ2P4aAVot5iXAdMCsZe\nswCCwndKbN4FjwlLr90bmWciigF+NlyEmJzqS0LlZdhMoBzC5m5FryPBRy1/kWfi\nNrbLUiEv3K5hIi8Yezb2fuDLUcJUtvt+iNJGj4sQ1QKBgQDbTSPBSXD3ITB/S2MY\nD4EnEFsGGlxw7bfi0D3jkHehSF1gUkkVVeTT+88Z6MTA99JN45j3BHbsalY8ML8m\neZqLB0O1PrO+ATMc2j202A0bCa1frda/7pN4h+CTpv4kOdXaQO4lg1nKhSSWFTTd\nHR5BJBaeQLP46ZmRsFTCL6kG0wKBgQDEEP22xEtGIAqqrD6g5de43a7m5M224NvD\neNaoui1lHHnvRwxpVor/y3RoH5hNcgsDLpHPfMlISbbbb+1eQlw01enpQQxUjqOa\nQcJ2lzcE0+Ygnak6r2SJ8nlhK84g7CIgwZpESFZr8GpV7nrMBqjjutxd6nDoupS7\nV+3SQ4giuwKBgHAFfn8sibTjUkej9bGDsgCHXUfHzXKuK6GDqCmHUWSkd3ZNciGg\n56vVVBwzB9ZegSHiYe/Eaw8m3ngOmoYH1gawpkh+CAjFyhsx7BVly4QFNHfMcAdI\n0jHejrw9sFJG7NN5GW02JHbL/j1gBcnxJtQ1oAwklwpOIXEHNrSe7eObAoGAE+gd\nunbHpcEPFDEU0sVDV9O6NFs6v7yo03nrYYo1nbR8dNzj17YfusTvdrrufb58e8A4\nsbZbwWkqlbERiqZ2Mi8d5r7h/5vT5I+UrPHBdk4FaX5YdkrkjFUAGeuWrCUNegHu\nJcyqaZ8pTLw/34M1lpmcUjTBbf+zpinRTa3pno0CgYBhRikjq0Ucz/CGgS0oi46e\njpVO6eiVBx7bkmzEOpVr1ItJIe3w6gfScyJZWVfY8EilZ137g9vN47/SfOK6LtvH\nPSGDIezMLHhQF+UOWckAA0qWj0EuYgDc8aeJD3llf3SbyUIzgfL9mzagAPa2cCiR\nrn4503k5ewn6GGZARuauGw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "transmute-cli@transmute-framework.iam.gserviceaccount.com",
+  "client_id": "101004533373346019638",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/transmute-cli%40transmute-framework.iam.gserviceaccount.com"
+}
