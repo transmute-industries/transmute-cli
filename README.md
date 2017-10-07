@@ -21,7 +21,8 @@ $ yarn transmute mig-env firebase transmute ./environment.secret.env
 $ yarn transmute serve
 $ yarn transmute firestore
 $ yarn transmute accounts
-$ yarn transmute sign "100:0x6e13dbe820cdf54f79bde558ab1a6b6ff2261b42"
+$ yarn transmute sign -m "100:0x6e13dbe820cdf54f79bde558ab1a6b6ff2261b42"
+$ yarn transmute recover -m <msg> -s <sig>
 
 ```
 

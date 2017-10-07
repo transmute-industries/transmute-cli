@@ -1,6 +1,13 @@
 const vorpal = require("vorpal")();
 const TransmuteCLI = require("./lib");
 const T = require("transmute-framework").default.init();
+const shell = require("shelljs");
+
+console.log("👑  Transmute ");
+
+require("./lib/patch").default(vorpal);
+require("./lib/ipfs").default(vorpal);
+require("./lib/event-store").default(vorpal);
 
 vorpal.command("echo [message]", "echo a message").action((args, callback) => {
   TransmuteCLI.echo(args.message, callback);
@@ -22,7 +29,7 @@ vorpal
     const address = accounts[0];
     const { messageBufferHex, signature } = await T.Toolbox.sign(
       address,
-      args.message
+      args.options.message
     );
     console.log("💌  " + messageBufferHex);
     console.log("🔏  " + signature);
@@ -49,6 +56,24 @@ vorpal
     console.log("🔏  " + recoveredAddress);
     callback();
   });
+
+vorpal.command("migrate", "run truffle migrate").action((args, callback) => {
+  console.log("🍄  Truffle Migrate ...");
+  if (shell.exec("truffle migrate").code !== 0) {
+    shell.echo("Error: truffle migrate failed.");
+    shell.exit(1);
+  }
+  callback();
+});
+
+vorpal.command("test", "run truffle test").action((args, callback) => {
+  console.log("🍄  Truffle Test ...");
+  if (shell.exec("truffle test").code !== 0) {
+    shell.echo("Error: truffle test failed.");
+    shell.exit(1);
+  }
+  callback();
+});
 
 vorpal
   .command(
@@ -109,4 +134,4 @@ vorpal
     TransmuteCLI.serveFunctions(callback);
   });
 
-vorpal.parse(process.argv);
+vorpal.delimiter("🦄   $").show().parse(process.argv);
