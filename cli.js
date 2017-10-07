@@ -1,12 +1,54 @@
-#!/usr/bin/env node
-
 const vorpal = require("vorpal")();
-
-import TransmuteCLI from "./index";
+const TransmuteCLI = require("./lib");
+const T = require("transmute-framework").default.init();
 
 vorpal.command("echo [message]", "echo a message").action((args, callback) => {
   TransmuteCLI.echo(args.message, callback);
 });
+
+vorpal.command("accounts", "list accounts").action(async (args, callback) => {
+  const accounts = await T.getAccounts();
+  accounts.forEach(account => {
+    console.log("📮  " + account);
+  });
+  callback();
+});
+
+vorpal
+  .command("sign", "sign a message with the default address")
+  .option("-m, --message <msg>", "the message text")
+  .action(async (args, callback) => {
+    const accounts = await T.getAccounts();
+    const address = accounts[0];
+    const { messageBufferHex, signature } = await T.Toolbox.sign(
+      address,
+      args.message
+    );
+    console.log("💌  " + messageBufferHex);
+    console.log("🔏  " + signature);
+    callback();
+  });
+
+vorpal
+  .command(
+    "recover",
+    "recover the address used to sign a message from a signature"
+  )
+  .option("-m, --message <msg>", "the message hex")
+  .option("-s, --signature <sig>", "the message signature")
+  .types({
+    string: ["m", "message", "s", "signature"]
+  })
+  .action(async (args, callback) => {
+    const accounts = await T.getAccounts();
+    const address = accounts[0];
+    const recoveredAddress = await T.Toolbox.recover(
+      args.options.message,
+      args.options.signature
+    );
+    console.log("🔏  " + recoveredAddress);
+    callback();
+  });
 
 vorpal
   .command(
@@ -67,4 +109,4 @@ vorpal
     TransmuteCLI.serveFunctions(callback);
   });
 
-vorpal.delimiter("🔥  $").show().parse(process.argv);
+vorpal.parse(process.argv);

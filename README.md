@@ -10,15 +10,18 @@ $ npm install -g transmute-cli@latest
 
 #### Dev Commands
 ```
-$ npm install -g firebase-tools
 $ npm install
 $ firebase init
-$ yarn test-bin gen-env js transmute ./environment.secret.env ./environment.constants.js
-$ yarn test-bin gen-env ts transmute ./environment.secret.env ./environment.constants.ts
-$ yarn test-bin gen-env mask transmute ./environment.secret.env ./environment.example.env
-$ yarn test-bin mig-env firebase transmute ./environment.secret.env
-$ yarn test-bin install globals
-$ yarn test-bin serve
+$ yarn transmute install globals
+$ yarn transmute echo 'hello'
+$ yarn transmute gen-env js transmute ./environment.secret.env ./environment.constants.js
+$ yarn transmute gen-env ts transmute ./environment.secret.env ./environment.constants.ts
+$ yarn transmute gen-env mask transmute ./environment.secret.env ./environment.example.env
+$ yarn transmute mig-env firebase transmute ./environment.secret.env
+$ yarn transmute serve
+$ yarn transmute firestore
+$ yarn transmute accounts
+$ yarn transmute sign "100:0x6e13dbe820cdf54f79bde558ab1a6b6ff2261b42"
 
 ```
 

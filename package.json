@@ -7,7 +7,7 @@
   "es2015": "lib-esm/index.js",
   "typings": "typings/index.d.ts",
   "bin": {
-    "transmute": "lib/transmute.js"
+    "transmute": "cli.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "node": ">=6.9"
   },
   "scripts": {
-    "test-bin": "node lib/transmute.js",
+    "transmute": "node cli.js",
     "fuck": "yarn cleanup && yarn build && git add -A && git commit -m ':rocket:' --no-verify && npm version patch && npm publish && npm install transmute-cli@latest -g",
     "cleanup": "shx rm -rf umd lib lib-esm lib-fesm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
@@ -70,15 +70,26 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": ["npm run prettier:ts -- --write", "git add"]
+    "src/**/*.{ts,tsx}": [
+      "npm run prettier:ts -- --write",
+      "git add"
+    ]
   },
   "jest": {
-    "roots": ["<rootDir>/src"],
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "json", "node"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "node"
+    ],
     "mapCoverage": true,
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules/",
@@ -87,6 +98,7 @@
       "<rootDir>/src/migrate",
       "<rootDir>/src/install",
       "<rootDir>/src/serve",
+      "<rootDir>/src/firestore",
       "<rootDir>/lib-esm/",
       "<rootDir>/umd/",
       "<rootDir>/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
@@ -101,9 +113,12 @@
     }
   },
   "dependencies": {
+    "@google-cloud/firestore": "^0.8.1",
     "dotenv": "^4.0.0",
+    "firebase": "^4.5.0",
     "firebase-admin": "^5.4.1",
     "firebase-functions": "^0.7.0",
+    "transmute-framework": "^0.1.49",
     "vorpal": "^1.12.0"
   },
   "devDependencies": {

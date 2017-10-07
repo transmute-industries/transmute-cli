@@ -5965,7 +5965,11 @@ exports.default = (message, callback) => {
 Object.defineProperty(exports, "__esModule", { value: true });
 const shell = __webpack_require__(3);
 exports.default = callback => {
-    let lines = ["npm install -g firebase-tools --engine-strict=false"];
+    let lines = [
+        "npm install -g truffle@beta",
+        "npm install -g firebase-tools --engine-strict=false",
+        "npm install -g ethereumjs-testrpc"
+    ];
     lines.forEach(line => {
         if (shell.exec(line).code !== 0) {
             shell.echo("Error: failed to install global: " + line);
