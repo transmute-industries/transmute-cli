@@ -34,7 +34,12 @@ export default vorpal => {
     .action(async (args, callback) => {
       let addresses = await T.getAccounts();
       let address = addresses[0];
-      console.log(address);
+      let factory = await T.EventStoreFactoryContract.deployed();
+      let factoryReadModel = await T.Factory.getFactoryReadModel(
+        factory,
+        address
+      );
+      console.log(factoryReadModel);
       callback();
     });
 
