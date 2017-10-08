@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const vorpal = require("vorpal")();
 const TransmuteCLI = require("./lib").default;
 const T = require("transmute-framework").default.init();
