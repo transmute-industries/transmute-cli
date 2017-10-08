@@ -7,6 +7,7 @@ const querystring = require("querystring");
 
 let cwd = process.cwd();
 let env, functions;
+
 try {
   functions = require(path.join(cwd, "./functions/src"));
 } catch (e) {
@@ -19,15 +20,7 @@ try {
   throw "expect serve to be run from a directory with environment.constants.js in it.";
 }
 
-const admin = require("firebase-admin");
-
-admin.initializeApp({
-  credential: admin.credential.cert(
-    require("../transmute-framework-ae7ad1443e90.json")
-  )
-});
-
-const db = admin.firestore();
+const db = env.firebaseAdmin.firestore();
 
 const HOST = env.TRANSMUTE_API_HOST || "0.0.0.0";
 const PORT = env.TRANSMUTE_API_PORT || "3001";
@@ -60,7 +53,7 @@ const extractParams = async request => {
     query: querystring.parse(url.parse(request.url).query),
     body: requestBodyJson,
     db,
-    admin,
+    admin: env.firebaseAdmin,
     env
   };
 };
@@ -68,7 +61,10 @@ const extractParams = async request => {
 async function onRequest(request, response) {
   var pathname = url.parse(request.url).pathname;
   var functionName = pathname.split("/")[1];
-  let headers = { "Content-Type": "application/json" };
+  let headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
+  };
   if (functionName === "favicon.ico") {
     fs
       .createReadStream(path.join(__dirname, "..", "favicon.ico"))
@@ -103,6 +99,5 @@ async function onRequest(request, response) {
     }
   }
 }
-
 console.log("Server has started and listening on : " + HOST + ":" + PORT);
 http.createServer(onRequest).listen(PORT, HOST);

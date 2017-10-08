@@ -9,5 +9,4 @@ node_modules
 /lib-fesm 
 /typings 
 
-
-transmute-framework-ae7ad1443e90.json
+environment.secret.env
