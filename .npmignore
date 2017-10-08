@@ -1,2 +1,4 @@
 
 environment.secret.env
+coverage
+truffle.js
