@@ -4,8 +4,6 @@ const T = require("transmute-framework").default.init();
 const shell = require("shelljs");
 const firebase = require("firebase");
 
-var rp = require("request-promise");
-
 console.log("👑  Transmute ");
 
 require("./lib/patch").default(vorpal);
