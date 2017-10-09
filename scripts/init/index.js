@@ -14,7 +14,7 @@ module.exports = vorpal => {
       ? path.join(process.cwd(), args.path, "./dapp")
       : path.join(process.cwd(), "./dapp");
     let cmd = `cp -r ${sourceDappPath} ${targetPath}`;
-    vorpal.logger.warn(cmd);
+    vorpal.logger.log(cmd);
     if (shell.exec(cmd).code !== 0) {
       vorpal.logger.fatal("Error: failed command: " + cmd);
       shell.exit(1);
@@ -23,7 +23,7 @@ module.exports = vorpal => {
     // Copy CLI Cloud Functions
     const cliFunctionsDir = path.join(__dirname, "../../functions");
     cmd = `cp -r ${cliFunctionsDir} ${targetPath}`;
-    vorpal.logger.warn(cmd);
+    vorpal.logger.log(cmd);
     if (shell.exec(cmd).code !== 0) {
       vorpal.logger.fatal("Error: failed command: " + cmd);
       shell.exit(1);
@@ -36,7 +36,7 @@ module.exports = vorpal => {
       "environment.node.js"
     );
     cmd = `cp ${envFilePath} ${targetPath}/functions/environment.node.js`;
-    vorpal.logger.warn(cmd);
+    vorpal.logger.log(cmd);
     if (shell.exec(cmd).code !== 0) {
       vorpal.logger.fatal("Error: failed command: " + cmd);
       shell.exit(1);
@@ -45,7 +45,7 @@ module.exports = vorpal => {
     // Copy Web Env File from .transmute
     envFilePath = path.join(os.homedir(), ".transmute", "environment.web.js");
     cmd = `cp ${envFilePath} ${targetPath}/src/environment.web.js`;
-    vorpal.logger.warn(cmd);
+    vorpal.logger.log(cmd);
     if (shell.exec(cmd).code !== 0) {
       vorpal.logger.fatal("Error: failed command: " + cmd);
       shell.exit(1);

@@ -7863,9 +7863,9 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
 
-transmute-framework@0.1.49-firestore-test.6:
-  version "0.1.49-firestore-test.6"
-  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.6.tgz#2f556ef7c2eeaf6773d7cc82143e46dbe543d991"
+transmute-framework@0.1.49-firestore-test.7:
+  version "0.1.49-firestore-test.7"
+  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.7.tgz#2e94ed74855ddb61e7f7ad2f68bddaa00e72001a"
   dependencies:
     "@types/lodash" "4.14.77"
     accesscontrol "2.0.0"

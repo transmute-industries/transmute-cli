@@ -57,18 +57,26 @@ module.exports = vorpal => {
         await getOrCreateRCDir();
 
         // console.log(require("../env/generate/js-web"));
-
+        let cmd, secretEnvPath;
         //OVERWRITE WITH REAL SECRETS
-        let cmd = `cp /Users/orie/Code/secrets/environment.secret.env ${path.join(
-          os.homedir(),
-          ".transmute",
-          "environment.secret.env"
-        )}`;
-        if (shell.exec(cmd).code !== 0) {
-          vorpal.logger.fatal("Error: failed command: " + cmd);
-          shell.exit(1);
+        try {
+          secretEnvPath = path.join(
+            os.homedir(),
+            ".transmute",
+            "environment.secret.env"
+          );
+          cmd = `cp /Users/orie/Code/secrets/environment.secret.env ${secretEnvPath}`;
+          if (shell.exec(cmd).code !== 0) {
+            vorpal.logger.fatal("Error: failed command: " + cmd);
+            shell.exit(1);
+          }
+          vorpal.logger.info("Setup secrets have been overwritten!");
+        } catch (e) {
+          vorpal.logger.warn("Be sure to update: secretEnvPath");
         }
-      
+
+        vorpal.logger.info(`cat ${secretEnvPath}`);
+
         let prefix = "dapp";
 
         let secretEnvPathAbs = path.join(

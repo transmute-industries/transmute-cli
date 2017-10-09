@@ -207,7 +207,7 @@ accepts@~1.3.4:
     mime-types "~2.1.16"
     negotiator "0.6.1"
 
-accesscontrol@^2.0.0:
+accesscontrol@2.0.0, accesscontrol@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/accesscontrol/-/accesscontrol-2.0.0.tgz#d1b44c6f06f6fab2814e997e636bddac78484731"
   dependencies:
@@ -8163,11 +8163,12 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
 
-transmute-framework@^0.1.49-firestore-test.4:
-  version "0.1.49-firestore-test.4"
-  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.4.tgz#92bc999f5083617df73bccad354ffe9799856c37"
+transmute-framework@^0.1.49-firestore-test.7:
+  version "0.1.49-firestore-test.7"
+  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.7.tgz#2e94ed74855ddb61e7f7ad2f68bddaa00e72001a"
   dependencies:
     "@types/lodash" "4.14.77"
+    accesscontrol "2.0.0"
     bip39 "2.4.0"
     bs58 "4.0.1"
     chai "4.1.2"
