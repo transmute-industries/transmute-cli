@@ -5,6 +5,7 @@
     "cors": "^2.8.4",
     "firebase-admin": "^5.4.1",
     "firebase-functions": "^0.5",
+    "moment": "^2.18.1",
     "querystring": "^0.2.0",
     "transmute-framework": "0.1.49-firestore-test.6"
   },

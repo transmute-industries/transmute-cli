@@ -19,7 +19,9 @@ class App extends Component {
         </p>
         <button
           onClick={() => {
-            T.Firebase.login();
+            T.Firebase.login().then(user => {
+              console.log(user);
+            });
           }}
         >
           Login
