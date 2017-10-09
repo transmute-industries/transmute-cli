@@ -6,6 +6,7 @@ Work in progress CLI.
  
 ``` 
 $ npm install -g transmute-cli@latest  
+$ yarn global add transmute-cli@latest
 ``` 
  
 #### Dev Commands 

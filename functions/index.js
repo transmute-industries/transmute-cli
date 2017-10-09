@@ -3,7 +3,7 @@ const querystring = require("querystring");
 const url = require("url");
 const cors = require('cors')({ origin: true });
 const user_functions = require('./src');
-const env = require('../environment.constants');
+const env = require('../environment.node');
 
 exports.echo = functions.https.onRequest((req, res) => {
     cors(req, res, () => {

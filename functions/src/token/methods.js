@@ -45,7 +45,7 @@ const challengeClientToSignMessage = async functionParams => {
     message_raw,
     message_signature
   );
-  const tcs = new TokenChallengeStore(functionParams.db);
+  const tcs = new TokenChallengeStore(functionParams.env.TransmuteFramework.db);
 
   const challengeObject = await generateChallengeObjectForAddressToSign(
     tcs,
@@ -73,7 +73,7 @@ const verifyClientHasSignedMessage = async functionParams => {
     message_signature
   } = functionParams.query;
 
-  const tcs = new TokenChallengeStore(functionParams.db);
+  const tcs = new TokenChallengeStore(functionParams.env.TransmuteFramework.db);
   const storedChallange = await tcs.get(address);
 
   // console.log("storedChallange: ", storedChallange);
@@ -131,7 +131,7 @@ const verifyClientHasSignedMessage = async functionParams => {
   if (success) {
     storedChallange.token_issued = true;
     let updatedStoredChallange = await tcs.set(storedChallange);
-    let customToken = await functionParams.admin
+    let customToken = await functionParams.env.TransmuteFramework.firebaseAdmin
       .auth()
       .createCustomToken(address, conditions);
 

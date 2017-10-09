@@ -24,5 +24,17 @@ module.exports = vorpal => {
       }
     });
 
+  vorpal
+    .command("gen-web [firebaseConfigPath] [outputEnvPath]", "build.....")
+    .action((args, callback) => {
+      require("./generate/js-web")(args, callback);
+    });
+
+  vorpal
+    .command("gen-node [prefix] [secretEnvPath] [outputEnvPath]", "build.....")
+    .action((args, callback) => {
+      require("./generate/js-node")(args, callback);
+    });
+
   return vorpal;
 };

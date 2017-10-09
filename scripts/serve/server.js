@@ -14,14 +14,13 @@ try {
   throw Error(e);
 }
 
+console.log(cwd)
 try {
-  env = require(path.join(cwd, "./environment.constants"));
+  env = require(path.join(cwd, "./environment.node"));
 } catch (e) {
-  throw "expect serve to be run from a directory with environment.constants.js in it.";
+  console.warn( "expect serve to be run from a directory with environment.node.js in it.")
+  throw e;
 }
-
-const db = env.firebaseAdmin.firestore();
-
 const HOST = env.TRANSMUTE_API_HOST || "0.0.0.0";
 const PORT = env.TRANSMUTE_API_PORT || "3001";
 
@@ -52,8 +51,6 @@ const extractParams = async request => {
     name: pathname,
     query: querystring.parse(url.parse(request.url).query),
     body: requestBodyJson,
-    db,
-    admin: env.firebaseAdmin,
     env
   };
 };

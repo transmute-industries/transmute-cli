@@ -211,7 +211,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.34", "@types/lodash@^4.14.37":
+"@types/lodash@4.14.77", "@types/lodash@^4.14.34", "@types/lodash@^4.14.37":
   version "4.14.77"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.77.tgz#0bc699413e84d6ed5d927ca30ea0f0a890b42d75"
 
@@ -2674,6 +2674,10 @@ es6-object-assign@^1.0.3:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
 
+es6-promise@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.1.1.tgz#8811e90915d9a0dba36274f0b242dbda78f9c92a"
+
 es6-set@~0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/es6-set/-/es6-set-0.1.5.tgz#d2b3ec5d4d800ced818db538d28974db0a73ccb1"
@@ -3256,7 +3260,7 @@ findup@0.1.5:
     colors "~0.6.0-1"
     commander "~2.1.0"
 
-firebase-admin@^5.4.1:
+firebase-admin@5.4.1, firebase-admin@^5.4.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-5.4.1.tgz#6a930c5ed3ffceb7772394a50ba60497ec5090f6"
   dependencies:
@@ -3284,7 +3288,7 @@ firebase-functions@^0.7.0:
     lodash "^4.6.1"
     sha1 "^1.1.1"
 
-firebase@^4.5.0:
+firebase@4.5.0, firebase@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.5.0.tgz#e0973a9803b74c4c9d73d19f874712e6e9d16ba7"
   dependencies:
@@ -4386,6 +4390,13 @@ isobject@^2.0.0:
 isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+
+isomorphic-fetch@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
+  dependencies:
+    node-fetch "^1.0.1"
+    whatwg-fetch ">=0.10.0"
 
 isstream@~0.1.2:
   version "0.1.2"
@@ -5735,6 +5746,10 @@ murmurhash3js@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/murmurhash3js/-/murmurhash3js-3.0.1.tgz#3e983e5b47c2a06f43a713174e7e435ca044b998"
 
+mustache@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.0.tgz#4028f7778b17708a489930a6e52ac3bca0da41d0"
+
 mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
@@ -5803,7 +5818,7 @@ node-abi@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.1.1.tgz#c9cda256ec8aa99bcab2f6446db38af143338b2a"
 
-node-fetch@~1.7.1:
+node-fetch@^1.0.1, node-fetch@~1.7.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
   dependencies:
@@ -7834,21 +7849,26 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
 
-transmute-framework@^0.1.49:
-  version "0.1.49"
-  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49.tgz#ef42076d0a394ee75626fa5541201c1c448728bb"
+transmute-framework@0.1.49-firestore-test.4:
+  version "0.1.49-firestore-test.4"
+  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.4.tgz#92bc999f5083617df73bccad354ffe9799856c37"
   dependencies:
+    "@types/lodash" "4.14.77"
     bip39 "2.4.0"
     bs58 "4.0.1"
     chai "4.1.2"
     coveralls "3.0.0"
+    es6-promise "4.1.1"
     ethereumjs-testrpc "4.1.3"
     ethereumjs-tx "1.3.3"
     ethereumjs-util "5.1.2"
     ethereumjs-wallet "0.6.0"
     fallback-local-storage "0.0.17"
+    firebase "4.5.0"
+    firebase-admin "5.4.1"
     ipfs-api "14.3.5"
     ipld-dag-cbor "0.11.1"
+    isomorphic-fetch "2.2.1"
     jiff "0.7.3"
     json-logic-js "1.2.0"
     local-storage-fallback "4.0.0"
@@ -8409,6 +8429,10 @@ whatwg-encoding@^1.0.1:
   resolved "https://registry.yarnpkg.com/whatwg-encoding/-/whatwg-encoding-1.0.1.tgz#3c6c451a198ee7aec55b1ec61d0920c67801a5f4"
   dependencies:
     iconv-lite "0.4.13"
+
+whatwg-fetch@>=0.10.0:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
 
 whatwg-url@^4.3.0:
   version "4.8.0"

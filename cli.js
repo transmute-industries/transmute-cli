@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
 const vorpal = require("vorpal")();
-const TransmuteCLI = require("./lib").default;
-const T = require("transmute-framework").default.init();
 const shell = require("shelljs");
-const firebase = require("firebase");
-
+const TransmuteCLI = require("./lib").default;
+const { TransmuteFramework } = require("./environment.web");
+const T = TransmuteFramework;
 console.log("👑  Transmute ");
-
 require("./lib/patch").default(vorpal);
 require("./lib/ipfs").default(vorpal);
 require("./lib/event-store").default(vorpal);
@@ -21,7 +19,7 @@ vorpal.command("echo [message]", "echo a message").action((args, callback) => {
 vorpal
   .command("status", "report on the status of the cli.")
   .action((args, callback) => {
-    var unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
+    var unsubscribe = T.firebaseApp.auth().onAuthStateChanged(function(user) {
       // handle it
       if (user) {
         console.log("🔵  Logged in as:", user.uid);
@@ -38,72 +36,8 @@ vorpal
 vorpal
   .command("login", "login to firebase with transmute-framework")
   .action(async (args, callback) => {
-    const accounts = await T.getAccounts();
-    const address = accounts[0];
-    console.log("🔏  Logging into Firebase with transmute-framework...");
-    const sigObj = await T.Toolbox.sign(address, "transmute.cli.login");
-    let challengeFromSignature = await rp({
-      uri: "http://localhost:3001/token",
-      qs: {
-        method: "challenge",
-        address: address,
-        message_raw: sigObj.messageBufferHex,
-        message_hex: sigObj.messageHex,
-        message_signature: sigObj.signature
-      },
-      headers: {
-        "User-Agent": "Transmute CLI"
-      },
-      json: true // Automatically parses the JSON string in the response
-    });
-    if (
-      !challengeFromSignature.body.conditions.didClientAddressSignMessageRaw
-    ) {
-      throw Error(
-        "Server does not trust signature. didClientAddressSignMessageRaw: false"
-      );
-    }
-    const message_raw = challengeFromSignature.body.challenge;
-    const signedChallange = await T.Toolbox.sign(address, message_raw);
-    let tokenFromSignedChallenge = await rp({
-      uri: "http://localhost:3001/token",
-      qs: {
-        method: "verify",
-        address: address,
-        message_raw: signedChallange.messageBufferHex,
-        message_hex: signedChallange.messageHex,
-        message_signature: signedChallange.signature
-      },
-      headers: {
-        "User-Agent": "Transmute CLI"
-      },
-      json: true // Automatically parses the JSON string in the response
-    });
-
-    // console.log(tokenFromSignedChallenge.body);
-
-    await firebase
-      .auth()
-      .signInWithCustomToken(tokenFromSignedChallenge.body.token)
-      .then(data => {
-        if (data.uid === address) {
-          console.log("🏡  Logged in as:", address);
-        }
-      })
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        // ...
-      });
-
-    // const success =
-    //   tokenFromSignedChallenge.body.result.hasClientSignedChallenge;
-    // console.log("success: ", success);
-    // console.log("tokenFromSignedChallenge: ", tokenFromSignedChallenge);
-
-    // TransmuteCLI.echo(args.message, callback);
+    await T.Firebase.login()
+    callback()
   });
 
 vorpal.command("accounts", "list accounts").action(async (args, callback) => {
