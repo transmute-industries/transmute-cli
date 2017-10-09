@@ -10,8 +10,10 @@ module.exports = (args, callback) => {
     let lines = envFile.split("\n");
     let result = "firebase functions:config:set ";
     lines.forEach(line => {
-      let [key, value] = line.split("=");
-      result += `${prefix}.${key.toLowerCase()}='${value}' `;
+      if (line) {
+        let [key, value] = line.split("=");
+        result += `${prefix}.${key.toLowerCase()}='${value}' `;
+      }
     });
     if (shell.exec(result).code !== 0) {
       shell.echo("Error: failed to set firebase env.");

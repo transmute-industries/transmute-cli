@@ -21,3 +21,9 @@ $ transmute serve
 ```
 $ yarn start
 ```
+
+### Deploy
+
+```
+$ transmute mig-env firebase transmute ~/.transmute/environment.secret.env
+```
