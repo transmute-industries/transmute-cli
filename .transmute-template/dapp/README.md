@@ -22,8 +22,10 @@ $ transmute serve
 $ yarn start
 ```
 
-### Deploy
+### Deploy Functiosn Env
 
 ```
-$ transmute mig-env firebase transmute ~/.transmute/environment.secret.env
+$ firebase init 
+$ transmute mig-env firebase dapp ~/.transmute/environment.secret.env
+$ firebase deploy --only functions
 ```

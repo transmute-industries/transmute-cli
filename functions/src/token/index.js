@@ -3,14 +3,14 @@ const {
   verifyClientHasSignedMessage
 } = require("./methods");
 
-module.exports = async functionParams => {
+module.exports = functionParams => {
   try {
     switch (functionParams.query.method) {
       case "challenge":
-        return await challengeClientToSignMessage(functionParams);
+        return challengeClientToSignMessage(functionParams);
         break;
       case "verify":
-        return await verifyClientHasSignedMessage(functionParams);
+        return verifyClientHasSignedMessage(functionParams);
         break;
     }
   } catch (e) {
