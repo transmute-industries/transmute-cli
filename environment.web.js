@@ -8,7 +8,7 @@ let transmuteConfig = {
   aca: require("../transmute-framework/build/contracts/RBAC.json"),
   esa: require("../transmute-framework/build/contracts/RBACEventStore.json"),
   esfa: require("../transmute-framework/build/contracts/RBACEventStoreFactory.json"),
-  firebaseApp: firebase.initializeApp(require("../secrets/firebaseConfig.json"))
+  firebaseApp: firebase.initializeApp(require("../transmute-framework/firebaseConfig.json"))
 };
 
 TransmuteFramework.init(transmuteConfig);

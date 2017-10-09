@@ -301,6 +301,12 @@ accepts@~1.3.4:
     mime-types "~2.1.16"
     negotiator "0.6.1"
 
+accesscontrol@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/accesscontrol/-/accesscontrol-2.0.0.tgz#d1b44c6f06f6fab2814e997e636bddac78484731"
+  dependencies:
+    notation "^1.3.5"
+
 acorn-dynamic-import@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/acorn-dynamic-import/-/acorn-dynamic-import-2.0.2.tgz#c752bd210bef679501b6c6cb7fc84f8f47158cc4"
@@ -5926,6 +5932,10 @@ normalize-path@^2.0.0, normalize-path@^2.0.1:
   dependencies:
     remove-trailing-separator "^1.0.1"
 
+notation@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/notation/-/notation-1.3.5.tgz#a479b4dcbcd5e171fd2e270bc482ec80aa4a410b"
+
 npm-path@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/npm-path/-/npm-path-2.0.3.tgz#15cff4e1c89a38da77f56f6055b24f975dfb2bbe"
@@ -7849,11 +7859,12 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
 
-transmute-framework@0.1.49-firestore-test.4:
-  version "0.1.49-firestore-test.4"
-  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.4.tgz#92bc999f5083617df73bccad354ffe9799856c37"
+transmute-framework@0.1.49-firestore-test.6:
+  version "0.1.49-firestore-test.6"
+  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.6.tgz#2f556ef7c2eeaf6773d7cc82143e46dbe543d991"
   dependencies:
     "@types/lodash" "4.14.77"
+    accesscontrol "2.0.0"
     bip39 "2.4.0"
     bs58 "4.0.1"
     chai "4.1.2"
