@@ -120,6 +120,7 @@
     "firebase": "^4.5.0",
     "firebase-admin": "^5.4.1",
     "firebase-functions": "^0.7.0",
+    "global": "^4.3.2",
     "mustache": "^2.3.0",
     "ncp": "^2.0.0",
     "request-promise": "^4.2.2",

@@ -3609,7 +3609,7 @@ global-prefix@^0.1.4:
     is-windows "^0.2.0"
     which "^1.2.12"
 
-global@~4.3.0:
+global@^4.3.2, global@~4.3.0:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   dependencies:
@@ -7862,6 +7862,25 @@ tough-cookie@>=2.3.3, tough-cookie@^2.3.2, tough-cookie@~2.3.0, tough-cookie@~2.
 tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
+
+transmute-cli@^0.1.25:
+  version "0.1.25"
+  resolved "https://registry.yarnpkg.com/transmute-cli/-/transmute-cli-0.1.25.tgz#f47843b9904da4fca0d3b471f9f641735122edb5"
+  dependencies:
+    "@google-cloud/firestore" "^0.8.1"
+    bluebird "^3.5.1"
+    dotenv "^4.0.0"
+    firebase "^4.5.0"
+    firebase-admin "^5.4.1"
+    firebase-functions "^0.7.0"
+    mustache "^2.3.0"
+    ncp "^2.0.0"
+    request-promise "^4.2.2"
+    shelljs "^0.7.8"
+    transmute-framework "0.1.49-firestore-test.7"
+    vorpal "^1.12.0"
+    vorpal-log "^1.1.0"
+    vorpal-tour "^0.0.5"
 
 transmute-framework@0.1.49-firestore-test.7:
   version "0.1.49-firestore-test.7"
