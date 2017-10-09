@@ -4,7 +4,7 @@ module.exports = vorpal => {
     .command("version", "display version information")
     .action((args, callback) => {
       console.log("Transmute CLI: " + require("../package.json").version);
-      console.log("Transmute Framework: " + T.version);
+      console.log("Transmute Framework: " + vorpal.T.version);
       callback();
     });
 
@@ -18,7 +18,7 @@ module.exports = vorpal => {
   vorpal.command("accounts", "list accounts").action(async (args, callback) => {
     const accounts = await vorpal.T.getAccounts();
     accounts.forEach(account => {
-      console.log("📮  " + account);
+      vorpal.logger.log("📮  " + account);
     });
     callback();
   });
