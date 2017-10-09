@@ -23,8 +23,9 @@ module.exports = vorpal => {
     callback();
   });
 
-  require("./setup")(vorpal);
   require("./install")(vorpal);
+  require("./setup")(vorpal);
+  require("./init")(vorpal);
   require("./env")(vorpal);
   require("./serve")(vorpal);
   require("./patch")(vorpal);
