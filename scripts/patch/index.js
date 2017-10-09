@@ -1,9 +1,9 @@
 const path = require("path");
 
-import { add, remove } from "./commands/moveDirectory";
-import { patchFiles, unpatchFiles } from "./commands/patchFiles";
+const { add, remove } = require("./commands/moveDirectory");
+const { patchFiles, unpatchFiles } = require("./commands/patchFiles");
 
-export default vorpal => {
+module.exports = vorpal => {
   vorpal
     .command("patch", "Patch Truffle Migrations")
     .action((args, callback) => {

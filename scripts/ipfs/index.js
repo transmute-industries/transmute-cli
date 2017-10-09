@@ -5,7 +5,7 @@ let { getCachedReadModel } = T.EventStore;
 
 const _ = require("lodash");
 
-export default vorpal => {
+module.exports = vorpal => {
   const transmuteIpfsDeploy = async bindingModel => {
     let ti;
     if (bindingModel.env === "infura") {

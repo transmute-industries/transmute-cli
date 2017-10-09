@@ -1,6 +1,7 @@
 const fs = require("fs");
 
-module.exports = (prefix, dotEnvPath, outputConfigPath, callback) => {
+module.exports = (args, callback) => {
+  let { dotEnvPath, outputConfigPath } = args;
   fs.readFile(dotEnvPath, "utf8", (err, envFile) => {
     if (err) {
       throw err;

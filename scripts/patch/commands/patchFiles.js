@@ -51,7 +51,7 @@ const patchFileAsync = (targetPath, patchFileString) => {
         })
 }
 
-export const patchFiles = (patchTargetPath, transmuteMigrations) => {
+module.exports.patchFiles = (patchTargetPath, transmuteMigrations) => {
 
     return backupPatchTarget(patchTargetPath)
         .then((contents) => {
@@ -76,7 +76,7 @@ const deleteFile = (file) => {
     })
 }
 
-export const unpatchFiles = (patchedFilePath, backupFilePath) => {
+module.exports.unpatchFiles = (patchedFilePath, backupFilePath) => {
     let contents
     return fs.readFileAsync(backupFilePath, "utf8")
         .then((_contents) => {

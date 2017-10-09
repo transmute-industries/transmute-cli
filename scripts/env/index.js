@@ -1,39 +1,51 @@
 const path = require("path");
 
-const generateJSEnv = require("./js");
-const generateTSEnv = require("./ts");
-const generateEnvMask = require("./mask");
-
 module.exports = vorpal => {
   vorpal
+    .command("gen-mask [dotenv] [output]", "build.....")
+    .action((args, callback) => {
+      require("./generate/mask")(args, callback);
+    });
+
+  vorpal
     .command(
-      "gen-env [type] [prefix] [dotenv] [output]",
-      "build a js env module from a .env"
+      "gen-web [lang] [firebaseConfigPath] [outputEnvPath]",
+      "build....."
     )
     .action((args, callback) => {
-      switch (args.type) {
+      switch (args.lang) {
         case "js":
-          generateJSEnv(args.prefix, args.dotenv, args.output, callback);
-          break;
+          return require("./generate/js-web")(args, callback);
         case "ts":
-          generateTSEnv(args.prefix, args.dotenv, args.output, callback);
-          break;
-        case "mask":
-          generateEnvMask(args.prefix, args.dotenv, args.output, callback);
-          break;
+          return require("./generate/ts-web")(args, callback);
       }
     });
 
   vorpal
-    .command("gen-web [firebaseConfigPath] [outputEnvPath]", "build.....")
+    .command(
+      "gen-node [lang] [prefix] [secretEnvPath] [outputEnvPath]",
+      "build....."
+    )
     .action((args, callback) => {
-      require("./generate/js-web")(args, callback);
+      switch (args.lang) {
+        case "js":
+          return require("./generate/js-node")(args, callback);
+        case "ts":
+          return require("./generate/ts-node")(args, callback);
+      }
     });
 
-  vorpal
-    .command("gen-node [prefix] [secretEnvPath] [outputEnvPath]", "build.....")
+    vorpal
+    .command(
+      "mig-env [type] [prefix] [dotenv]",
+      "converts .env to firebase functions:config:set command and executes it. See https://firebase.google.com/docs/functions/config-env"
+    )
     .action((args, callback) => {
-      require("./generate/js-node")(args, callback);
+      switch (args.type) {
+        case "firebase":
+          require('./migrate/firebase')(args, callback);
+          break;
+      }
     });
 
   return vorpal;

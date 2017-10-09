@@ -8,7 +8,7 @@ Work in progress CLI.
 $ npm install -g transmute-cli@latest  
 $ yarn global add transmute-cli@latest
 ``` 
- 
+
 #### Dev Commands 
 ``` 
 $ npm install 
@@ -16,10 +16,7 @@ $ firebase init
 $ yarn transmute install globals 
 $ yarn transmute login
 $ yarn transmute echo 'hello' 
-$ yarn transmute gen-env js transmute ./environment.secret.env ./environment.constants.js 
-$ yarn transmute gen-env ts transmute ./environment.secret.env ./environment.constants.ts 
-$ yarn transmute gen-env mask transmute ./environment.secret.env ./environment.example.env 
-$ yarn transmute mig-env firebase transmute ./environment.secret.env 
+
 $ yarn transmute serve 
 $ yarn transmute firestore 
 $ yarn transmute accounts 
@@ -31,6 +28,26 @@ $ yarn transmute patch
 $ yarn transmute unpatch
  
 ``` 
+
+### Environment Commands
+
+#### JavaScript 
+```
+$ yarn transmute gen-node js dapp ../secrets/environment.secret.env ./environment.node.js
+$ yarn transmute gen-web js ../secrets/firebaseConfig.json ./environment.web.js
+```
+
+#### TypeScript 
+```
+$ yarn transmute gen-node ts dapp ../secrets/environment.secret.env ./environment.node.ts
+$ yarn transmute gen-web ts ../secrets/firebaseConfig.json ./environment.web.ts
+```
+
+#### Misc
+```
+$ yarn transmute gen-env mask transmute ./environment.secret.env ./environment.example.env 
+$ yarn transmute mig-env firebase transmute ./environment.secret.env 
+```
  
 #### Reading 
  

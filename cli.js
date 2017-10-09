@@ -5,12 +5,17 @@ const shell = require("shelljs");
 const TransmuteCLI = require("./lib").default;
 const { TransmuteFramework } = require("./environment.web");
 const T = TransmuteFramework;
+vorpal.T = T;
+
 console.log("👑  Transmute ");
-require("./lib/patch").default(vorpal);
-require("./lib/ipfs").default(vorpal);
-require("./lib/event-store").default(vorpal);
+
+require("./scripts/install")(vorpal);
 require("./scripts/env")(vorpal);
 require("./scripts/serve")(vorpal);
+require("./scripts/patch")(vorpal);
+require("./scripts/truffle")(vorpal);
+require("./scripts/ipfs")(vorpal);
+require("./scripts/event-store")(vorpal);
 
 vorpal.command("echo [message]", "echo a message").action((args, callback) => {
   TransmuteCLI.echo(args.message, callback);
@@ -82,43 +87,6 @@ vorpal
     );
     console.log("🔏  " + recoveredAddress);
     callback();
-  });
-
-vorpal.command("migrate", "run truffle migrate").action((args, callback) => {
-  console.log("🍄  Truffle Migrate ...");
-  if (shell.exec("truffle migrate").code !== 0) {
-    shell.echo("Error: truffle migrate failed.");
-    shell.exit(1);
-  }
-  callback();
-});
-
-vorpal.command("test", "run truffle test").action((args, callback) => {
-  console.log("🍄  Truffle Test ...");
-  if (shell.exec("truffle test").code !== 0) {
-    shell.echo("Error: truffle test failed.");
-    shell.exit(1);
-  }
-  callback();
-});
-
-vorpal
-  .command(
-    "mig-env [type] [prefix] [dotenv]",
-    "converts .env to firebase functions:config:set command and executes it. See https://firebase.google.com/docs/functions/config-env"
-  )
-  .action((args, callback) => {
-    switch (args.type) {
-      case "firebase":
-        TransmuteCLI.migrateFirebaseEnv(args.prefix, args.dotenv, callback);
-        break;
-    }
-  });
-
-vorpal
-  .command("install globals", "install all global node dependencies")
-  .action((args, callback) => {
-    TransmuteCLI.installGlobals(callback);
   });
 
 vorpal.delimiter("🦄   $").show().parse(process.argv);

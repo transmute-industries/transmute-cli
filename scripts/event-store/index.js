@@ -28,7 +28,7 @@ const T = require("transmute-framework").default.init();
 //         esfa: eventStoreFactoryArtifacts,
 //     })
 
-export default vorpal => {
+module.exports = vorpal => {
   vorpal
     .command("eventstore list", "List eventstores from the factory.")
     .action(async (args, callback) => {

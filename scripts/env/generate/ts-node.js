@@ -5,7 +5,7 @@ const Promise = require("bluebird");
 const readFile = Promise.promisify(require("fs").readFile);
 const writeFile = Promise.promisify(require("fs").writeFile);
 
-// yarn transmute gen-node js dapp ../secrets/environment.secret.env ./environment.node.js
+// yarn transmute gen-node ts dapp ../secrets/environment.secret.env ./environment.node.ts
 module.exports = async (args, callback) => {
   let { prefix, secretEnvPath, outputEnvPath } = args;
 
@@ -25,7 +25,7 @@ module.exports = async (args, callback) => {
   });
 
   let file = await readFile(
-    path.join(__dirname, "./templates/js-node-env.handlebars")
+    path.join(__dirname, "./templates/ts-node-env.handlebars")
   );
   var output = Mustache.render(file.toString(), {
     secretEnvPath,

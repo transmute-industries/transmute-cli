@@ -1,6 +1,6 @@
 const shell = require("shelljs");
 
-export default callback => {
+module.exports = callback => {
   let lines = [
     "npm install -g truffle@beta",
     "npm install -g firebase-tools --engine-strict=false",
