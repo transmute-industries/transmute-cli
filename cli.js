@@ -1,9 +1,15 @@
 #!/usr/bin/env node
-
+const vorpalLog = require("vorpal-log");
+const vorpalTour = require("vorpal-tour");
+const rc = require("vorpal-rc");
 const vorpal = require("vorpal")();
 const shell = require("shelljs");
 const path = require("path");
 const webEnvPath = path.join(process.cwd(), "./environment.web");
+const os = require("os");
+// https://github.com/vorpaljs/vorpal-tour/
+// https://github.com/AljoschaMeyer/vorpal-log/
+// https://github.com/subk/vorpal-rc
 
 let T;
 try {
@@ -15,95 +21,47 @@ try {
 }
 
 vorpal.T = T;
-
-console.log("👑  Transmute ");
-
-require("./scripts/install")(vorpal);
-require("./scripts/env")(vorpal);
-require("./scripts/serve")(vorpal);
-require("./scripts/patch")(vorpal);
-require("./scripts/truffle")(vorpal);
-require("./scripts/ipfs")(vorpal);
-require("./scripts/event-store")(vorpal);
+vorpal.logger = vorpal.logger;
 
 vorpal
-  .command("version", "display version information")
-  .action((args, callback) => {
-    console.log("Transmute CLI: " + require("./package.json").version);
-    console.log("Transmute Framework: " + T.version);
-  });
+  .use(rc, path.join(os.homedir(), ".awesomerc"))
+  .use(vorpalLog)
+  .use(vorpalTour, {
+    command: "tour",
+    tour: function(tour) {
+      // Colors the "tour guide" text.
+      tour.color("cyan");
 
-vorpal.command("echo [message]", "echo a message").action((args, callback) => {
-  const TransmuteCLI = require("./lib").default;
-  TransmuteCLI.echo(args.message, callback);
-});
+      // Adds a step to the tour:
+      // .begin spits user instructions when the step starts
+      // .expect listens for an event. The function it calls
+      //   expects a `true` to be called in order for the step
+      //   to finish.
+      // .reject spits text to the user when `false` is returned
+      //   on an `.expect` callback.
+      // .wait waits `x` millis before completing the step
+      // .end spits text to the user when the step completes.
+      tour
+        .step(1)
+        .begin('Welcome to the tour! Run "accounts".')
+        .expect("command", (data, cb) => {
+          cb(data.command === "accounts");
+        })
+        .reject('Uh.. Let\'s type "foo" instead..')
+        .wait(500)
+        .end("\nNice! Wasn't that command just amazing?\n");
 
-vorpal
-  .command("status", "report on the status of the cli.")
-  .action((args, callback) => {
-    var unsubscribe = T.firebaseApp.auth().onAuthStateChanged(function(user) {
-      // handle it
-      if (user) {
-        console.log("🔵  Logged in as:", user.uid);
-        unsubscribe();
-        callback();
-      } else {
-        console.log("🔴  Logged out.");
-        unsubscribe();
-        callback();
-      }
-    });
-  });
+      // A delay in millis between steps.
+      tour.wait(1000);
 
-vorpal
-  .command("login", "login to firebase with transmute-framework")
-  .action(async (args, callback) => {
-    await T.Firebase.login();
-    callback();
-  });
+      // Ends the tour, spits text to the user.
+      tour.end("Very well done!");
 
-vorpal.command("accounts", "list accounts").action(async (args, callback) => {
-  const accounts = await T.getAccounts();
-  accounts.forEach(account => {
-    console.log("📮  " + account);
-  });
-  callback();
-});
-
-vorpal
-  .command("sign", "sign a message with the default address")
-  .option("-m, --message <msg>", "the message text")
-  .action(async (args, callback) => {
-    const accounts = await T.getAccounts();
-    const address = accounts[0];
-    const { messageBufferHex, signature } = await T.Toolbox.sign(
-      address,
-      args.options.message
-    );
-    console.log("💌  " + messageBufferHex);
-    console.log("🔏  " + signature);
-    callback();
-  });
-
-vorpal
-  .command(
-    "recover",
-    "recover the address used to sign a message from a signature"
-  )
-  .option("-m, --message <msg>", "the message hex")
-  .option("-s, --signature <sig>", "the message signature")
-  .types({
-    string: ["m", "message", "s", "signature"]
+      return tour;
+    }
   })
-  .action(async (args, callback) => {
-    const accounts = await T.getAccounts();
-    const address = accounts[0];
-    const recoveredAddress = await T.Toolbox.recover(
-      args.options.message,
-      args.options.signature
-    );
-    console.log("🔏  " + recoveredAddress);
-    callback();
-  });
+  .delimiter("🦄   $")
+  .show()
+  .parse(process.argv);
 
-vorpal.delimiter("🦄   $").show().parse(process.argv);
+require("./scripts")(vorpal);
