@@ -3,7 +3,7 @@ module.exports = vorpal => {
   vorpal
     .command("version", "display version information")
     .action((args, callback) => {
-      console.log("Transmute CLI: " + require("./package.json").version);
+      console.log("Transmute CLI: " + require("../package.json").version);
       console.log("Transmute Framework: " + T.version);
       callback();
     });
