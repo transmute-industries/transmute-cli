@@ -24,7 +24,9 @@ if (!webEnv) {
   console.error(`Could not require transmute framework from: ./environment.web.js or ./src/environment.web.js`);
   console.log(`Have you run 'cp ~/.transmute/environment.web.js .' or 'transmute init'  ?`);
 } else {
+ 
   let T = webEnv.TransmuteFramework;
+  // console.log(T)
   vorpal.T = T;
 }
 

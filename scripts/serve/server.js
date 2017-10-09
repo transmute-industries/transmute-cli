@@ -17,9 +17,10 @@ try {
 try {
   env = require(path.join(cwd, "./functions/environment.node"));
 } catch (e) {
-  console.warn(
-    "expected functions/environment.node.js to exist. Have you run `transmute init` ?"
-  );
+  console.warn("Error requiring ./functions/environment.node");
+  console.warn("Have you run `transmute setup` ?");
+  console.warn("Are the paths in ~/.transmute/environment.secret.env correct?");
+  console.warn("Have you run `transmute init` ?");
   throw e;
 }
 const HOST = env.TRANSMUTE_API_HOST || "0.0.0.0";

@@ -58,6 +58,17 @@ module.exports = vorpal => {
 
         // console.log(require("../env/generate/js-web"));
 
+        //OVERWRITE WITH REAL SECRETS
+        let cmd = `cp /Users/orie/Code/secrets/environment.secret.env ${path.join(
+          os.homedir(),
+          ".transmute",
+          "environment.secret.env"
+        )}`;
+        if (shell.exec(cmd).code !== 0) {
+          vorpal.logger.fatal("Error: failed command: " + cmd);
+          shell.exit(1);
+        }
+      
         let prefix = "dapp";
 
         let secretEnvPathAbs = path.join(
@@ -166,7 +177,7 @@ module.exports = vorpal => {
       vorpal.logger.fatal("Error: failed command: " + cmd);
       shell.exit(1);
     }
-    
+
     callback();
   });
   return vorpal;

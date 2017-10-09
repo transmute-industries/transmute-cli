@@ -16,7 +16,6 @@ const detectedCloud = () => {
 const FRAMEWORK_ENV = detectedCloud() ? "NODE_CLOUD" : "NODE_LOCAL";
 if (FRAMEWORK_ENV === "NODE_LOCAL") {
   const FRAMEWORK_ENV_PATH = path.join(
-    process.cwd(),
     "{{{secretEnvPath}}}"
   );
   require("dotenv").config({ path: FRAMEWORK_ENV_PATH });
@@ -42,9 +41,9 @@ if (FRAMEWORK_ENV === "NODE_CLOUD") {
 
 let transmuteConfig = {
   providerUrl: "http://localhost:8545",
-  aca: require("./build/contracts/RBAC.json"),
-  esa: require("./build/contracts/RBACEventStore.json"),
-  esfa: require("./build/contracts/RBACEventStoreFactory.json"),
+  aca: require("transmute-framework/build/contracts/RBAC.json"),
+  esa: require("transmute-framework/build/contracts/RBACEventStore.json"),
+  esfa: require("transmute-framework/build/contracts/RBACEventStoreFactory.json"),
   firebaseAdmin: admin
 };
 
