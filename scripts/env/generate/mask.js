@@ -1,18 +1,21 @@
 const fs = require("fs");
 
 module.exports = (args, callback) => {
-  let { dotEnvPath, outputConfigPath } = args;
-  fs.readFile(dotEnvPath, "utf8", (err, envFile) => {
+  let { dotenv, output } = args;
+  // console.log( args )
+  fs.readFile(dotenv, "utf8", (err, envFile) => {
     if (err) {
       throw err;
     }
     let lines = envFile.split("\n");
     let result = "";
     lines.forEach(line => {
-      let [key, value] = line.split("=");
-      result += `${key}='EXAMPLE' \n`;
+      if (line) {
+        let [key, value] = line.split("=");
+        result += `${key}='______________________' \n`;
+      }
     });
-    fs.writeFile(outputConfigPath, result, err => {
+    fs.writeFile(output, result, err => {
       if (err) return console.log(err);
       callback();
     });

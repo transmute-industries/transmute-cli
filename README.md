@@ -45,7 +45,7 @@ $ yarn transmute gen-web ts ../secrets/firebaseConfig.json ./environment.web.ts
 
 #### Misc
 ```
-$ yarn transmute gen-env mask transmute ./environment.secret.env ./environment.example.env 
+$ yarn transmute gen-mask ./environment.secret.env ./environment.example.env 
 $ yarn transmute mig-env firebase transmute ./environment.secret.env 
 ```
  

@@ -1,5 +1,5 @@
 module.exports = vorpal => {
-  vorpal.logger.info("👑  Transmute ");
+  vorpal.logger.log("👑  Transmute ");
   vorpal
     .command("version", "display version information")
     .action((args, callback) => {

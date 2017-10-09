@@ -17,5 +17,4 @@ The server verifies message was signed with the supplied address, and then const
 
 The client signs the challenge, and sends the signature to the server.
 
-The server checks the conditions:
-
+The server checks sigs and returns a token if the client was able to sign their challenge with the address used to generate the challenge.

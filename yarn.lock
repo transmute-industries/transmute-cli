@@ -8253,12 +8253,6 @@ vorpal-log@^1.1.0:
   dependencies:
     chalk "^1.1.1"
 
-vorpal-rc@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/vorpal-rc/-/vorpal-rc-1.1.0.tgz#4b24ac8a67ec6a69ba7af630ba6fd1cb362af661"
-  dependencies:
-    trim "0.0.1"
-
 vorpal-tour@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/vorpal-tour/-/vorpal-tour-0.0.5.tgz#0c26dc469609e62078f675670756966268183a79"

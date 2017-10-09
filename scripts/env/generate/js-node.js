@@ -7,6 +7,7 @@ const writeFile = Promise.promisify(require("fs").writeFile);
 
 // yarn transmute gen-node js dapp ../secrets/environment.secret.env ./environment.node.js
 module.exports = async (args, callback) => {
+  // console.log(args)
   let { prefix, secretEnvPath, outputEnvPath } = args;
 
   let dotEnvFile = await readFile(secretEnvPath, "utf8")

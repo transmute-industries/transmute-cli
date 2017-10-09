@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = vorpal => {
+  
   vorpal
     .command("gen-mask [dotenv] [output]", "build.....")
     .action((args, callback) => {
@@ -27,6 +28,7 @@ module.exports = vorpal => {
       "build....."
     )
     .action((args, callback) => {
+      console.log(args)
       switch (args.lang) {
         case "js":
           return require("./generate/js-node")(args, callback);
