@@ -62,14 +62,14 @@ vorpal.use(vorpalTour, {
     tour
       .step(2)
       .begin(
-        'Make sure ~/.tranmsute/environment.secret.env is correct BEFORE PROCEEDING. Run "init"'
+        'Make sure ~/.tranmsute/environment.secret.env is correct BEFORE PROCEEDING. Run "init ."'
       )
       .expect("command", (data, cb) => {
-        cb(data.command === "init");
+        cb(data.command === "init .");
       })
-      .reject('Uh.. Let\'s type "init" instead..')
+      .reject('Uh.. Let\'s type "init ." instead..')
       .wait(500)
-      .end("Great! You now have a sample dapp to play with.");
+      .end("Great! You now have a sample dapp to play with. See the dapp README.md for the next steps!");
 
     // A delay in millis between steps.
     tour.wait(1000);
