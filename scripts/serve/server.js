@@ -13,12 +13,13 @@ try {
 } catch (e) {
   throw Error(e);
 }
-
-console.log(cwd)
+// console.log(cwd)
 try {
-  env = require(path.join(cwd, "./environment.node"));
+  env = require(path.join(cwd, "./functions/environment.node"));
 } catch (e) {
-  console.warn( "expect serve to be run from a directory with environment.node.js in it.")
+  console.warn(
+    "expected functions/environment.node.js to exist. Have you run `transmute init` ?"
+  );
   throw e;
 }
 const HOST = env.TRANSMUTE_API_HOST || "0.0.0.0";

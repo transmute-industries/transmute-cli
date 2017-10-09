@@ -1,18 +1,17 @@
-const firebase = require("firebase");
-require("firebase/firestore");
-
+const firebase = require("firebase"); 
+require("firebase/firestore"); 
 let TransmuteFramework = require("transmute-framework").default;
 
-let transmuteConfig = {
-  providerUrl: "http://localhost:8545",
-  aca: require("./build/contracts/RBAC.json"),
-  esa: require("./build/contracts/RBACEventStore.json"),
-  esfa: require("./build/contracts/RBACEventStoreFactory.json"),
-  firebaseApp: firebase.initializeApp(require("{{{firebaseConfigPath}}}"))
-}
+let transmuteConfig = { 
+    providerUrl: "http://localhost:8545", 
+    aca: require("transmute-framework/build/contracts/RBAC.json"),
+    esa: require("transmute-framework/build/contracts/RBACEventStore.json"), 
+    esfa: require("transmute-framework/build/contracts/RBACEventStoreFactory.json"),
+    firebaseApp: firebase.initializeApp({{{firebaseConfig}}}) 
+};
 
-TransmuteFramework.init(transmuteConfig);
+TransmuteFramework.init(transmuteConfig); 
 
-export default {
-  TransmuteFramework
+export default { 
+    TransmuteFramework
 }

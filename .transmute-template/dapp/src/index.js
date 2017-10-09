@@ -4,7 +4,11 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-// import { TransmuteFramework as T } from "./environment.web";
+// console.log("dapp loaded...");
+
+import { TransmuteFramework as T } from "./environment.web";
+
+console.log(T);
 
 // T.db
 //   .collection("RBACFactory")
@@ -14,8 +18,6 @@ import registerServiceWorker from "./registerServiceWorker";
 //       console.log(`${doc.id} => `, doc.data());
 //     });
 //   });
-
-console.log("dapp loaded...");
 
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();

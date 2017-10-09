@@ -44,9 +44,9 @@ if (FRAMEWORK_ENV === "NODE_CLOUD") {
 
 let transmuteConfig = {
   providerUrl: "http://localhost:8545",
-  aca: require("../transmute-framework/build/contracts/RBAC.json"),
-  esa: require("../transmute-framework/build/contracts/RBACEventStore.json"),
-  esfa: require("../transmute-framework/build/contracts/RBACEventStoreFactory.json"),
+  aca: require("./node_modules/transmute-framework/build/contracts/RBAC.json"),
+  esa: require("./node_modules/transmute-framework/build/contracts/RBACEventStore.json"),
+  esfa: require("./node_modules/transmute-framework/build/contracts/RBACEventStoreFactory.json"),
   firebaseAdmin: admin
 };
 

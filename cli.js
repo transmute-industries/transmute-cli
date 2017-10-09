@@ -4,21 +4,29 @@ const vorpalTour = require("vorpal-tour");
 const vorpal = require("vorpal")();
 const shell = require("shelljs");
 const path = require("path");
-const webEnvPath = path.join(process.cwd(), "./environment.web");
 
 // https://github.com/vorpaljs/vorpal-tour/
 // https://github.com/AljoschaMeyer/vorpal-log/
 
-let T;
+let webEnv
 try {
-  T = require(webEnvPath).TransmuteFramework;
+  webEnv = require(path.join(process.cwd(), "environment.web"));
 } catch (e) {
-  console.log(
-    "Could not require require transmute framework from a local environment.web"
-  );
+  // throw e;
+}
+try {
+  webEnv = require(path.join(process.cwd(), "src", "environment.web"));
+} catch (e) {
+  // throw e;
 }
 
-vorpal.T = T;
+if (!webEnv) {
+  console.error(`Could not require transmute framework from: ./environment.web.js or ./src/environment.web.js`);
+  console.log(`Have you run 'cp ~/.transmute/environment.web.js .' or 'transmute init'  ?`);
+} else {
+  let T = webEnv.TransmuteFramework;
+  vorpal.T = T;
+}
 
 vorpal.use(vorpalLog);
 
