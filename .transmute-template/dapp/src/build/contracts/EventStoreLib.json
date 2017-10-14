@@ -1,0 +1,2766 @@
+{
+  "contractName": "EventStoreLib",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "EventStoreLib.EsEventStorage storage"
+        },
+        {
+          "name": "_eventType",
+          "type": "bytes32"
+        },
+        {
+          "name": "_keyType",
+          "type": "bytes1"
+        },
+        {
+          "name": "_valueType",
+          "type": "bytes1"
+        },
+        {
+          "name": "_key",
+          "type": "bytes32"
+        },
+        {
+          "name": "_value",
+          "type": "bytes32"
+        }
+      ],
+      "name": "writeEvent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "self",
+          "type": "EventStoreLib.EsEventStorage storage"
+        },
+        {
+          "name": "_eventId",
+          "type": "uint256"
+        }
+      ],
+      "name": "readEvent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "address"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "bytes1"
+        },
+        {
+          "name": "",
+          "type": "bytes1"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "Id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "TxOrigin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "Created",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "EventType",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "KeyType",
+          "type": "bytes1"
+        },
+        {
+          "indexed": false,
+          "name": "ValueType",
+          "type": "bytes1"
+        },
+        {
+          "indexed": false,
+          "name": "Key",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "Value",
+          "type": "bytes32"
+        }
+      ],
+      "name": "EsEvent",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b5b6104c48061001f6000396000f300606060405263ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633bb642038114610048578063a057fd5e14610081575b600080fd5b61006f600435602435600160f860020a03196044358116906064351660843560a4356100f5565b60405190815260200160405180910390f35b61008f6004356024356102d9565b60405197885273ffffffffffffffffffffffffffffffffffffffff90961660208801526040808801959095526060870193909352600160f860020a031991821660808701521660a085015260c084015260e0830191909152610100909101905180910390f35b60008060006101026103c9565b895473ffffffffffffffffffffffffffffffffffffffff331682524260208301819052604083018b9052600160f860020a0319808b1660608501528916608084015260a0830188905260c08301879052935091507f34fda208d95da3b89ce2ca6e488201282198f339ef139dd80138a430c8d03a2482825183602001518460400151856060015186608001518760a001518860c0015160405197885273ffffffffffffffffffffffffffffffffffffffff90961660208801526040808801959095526060870193909352600160f860020a031991821660808701521660a085015260c084015260e0830191909152610100909101905180910390a189548a906001810161020f8382610405565b916000526020600020906006020160005b5082908151815473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff919091161781556020820151816001015560408201516002820155606082015160038201805460ff191660f860020a909204919091179055608082015160038201805460f860020a9092046101000261ff001990921691909117905560a0820151600482015560c0820151600590910155509193508391505b5050509695505050505050565b6000806000806000806000806102ed6103c9565b8a548b908b9081106102fb57fe5b906000526020600020906006020160005b5060e06040519081016040908152825473ffffffffffffffffffffffffffffffffffffffff16825260018301546020830152600283015490820152600382015460f860020a808202600160f860020a0319908116606085015261010090920402166080820152600482015460a082015260059091015460c0820152905089815182602001518360400151846060015185608001518660a001518760c00151985098509850985098509850985098505b509295985092959890939650565b60e06040519081016040908152600080835260208301819052908201819052606082018190526080820181905260a0820181905260c082015290565b815481835581811511610431576006028160060283600052602060002091820191016104319190610437565b5b505050565b61049591905b8082111561049157805473ffffffffffffffffffffffffffffffffffffffff191681556000600182018190556002820181905560038201805461ffff1916905560048201819055600582015560060161043d565b5090565b905600a165627a7a72305820fff30d28b3b2c417452ae4b918546dca92e810113396ad40001ffef2a6a7efcc0029",
+  "deployedBytecode": "0x606060405263ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633bb642038114610048578063a057fd5e14610081575b600080fd5b61006f600435602435600160f860020a03196044358116906064351660843560a4356100f5565b60405190815260200160405180910390f35b61008f6004356024356102d9565b60405197885273ffffffffffffffffffffffffffffffffffffffff90961660208801526040808801959095526060870193909352600160f860020a031991821660808701521660a085015260c084015260e0830191909152610100909101905180910390f35b60008060006101026103c9565b895473ffffffffffffffffffffffffffffffffffffffff331682524260208301819052604083018b9052600160f860020a0319808b1660608501528916608084015260a0830188905260c08301879052935091507f34fda208d95da3b89ce2ca6e488201282198f339ef139dd80138a430c8d03a2482825183602001518460400151856060015186608001518760a001518860c0015160405197885273ffffffffffffffffffffffffffffffffffffffff90961660208801526040808801959095526060870193909352600160f860020a031991821660808701521660a085015260c084015260e0830191909152610100909101905180910390a189548a906001810161020f8382610405565b916000526020600020906006020160005b5082908151815473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff919091161781556020820151816001015560408201516002820155606082015160038201805460ff191660f860020a909204919091179055608082015160038201805460f860020a9092046101000261ff001990921691909117905560a0820151600482015560c0820151600590910155509193508391505b5050509695505050505050565b6000806000806000806000806102ed6103c9565b8a548b908b9081106102fb57fe5b906000526020600020906006020160005b5060e06040519081016040908152825473ffffffffffffffffffffffffffffffffffffffff16825260018301546020830152600283015490820152600382015460f860020a808202600160f860020a0319908116606085015261010090920402166080820152600482015460a082015260059091015460c0820152905089815182602001518360400151846060015185608001518660a001518760c00151985098509850985098509850985098505b509295985092959890939650565b60e06040519081016040908152600080835260208301819052908201819052606082018190526080820181905260a0820181905260c082015290565b815481835581811511610431576006028160060283600052602060002091820191016104319190610437565b5b505050565b61049591905b8082111561049157805473ffffffffffffffffffffffffffffffffffffffff191681556000600182018190556002820181905560038201805461ffff1916905560048201819055600582015560060161043d565b5090565b905600a165627a7a72305820fff30d28b3b2c417452ae4b918546dca92e810113396ad40001ffef2a6a7efcc0029",
+  "sourceMap": "26:2086:8:-;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:2086:8:-;;;;;;;;;;;;;;;;;;;;;;;514:891;;;;;;-1:-1:-1;;;;;;514:891:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1429:465;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;1429:465:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;514:891;713:4;729:13;758;803:28;;:::i;:::-;774:18;;841:29;860:10;841:29;;;745:3;880:15;;;:26;;;917:17;;;:30;;;-1:-1:-1;;;;;;958:26:8;;;:15;;;:26;994:30;;:17;;;:30;1035:11;;;:18;;;1063:13;;;:22;;;745:3;-1:-1:-1;774:18:8;-1:-1:-1;1096:242:8;774:18;841:7;1139:16;1170:7;:15;;;1199:7;:17;;;1230:7;:15;;;1259:7;:17;;;1290:7;:11;;;1315:7;:13;;;1096:242;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;1096:242:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1348:25;;:4;;:25;;;;:4;:25;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;1365:7:8;;;1348:25;;;-1:-1:-1;;1348:25:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;1348:25:8;-1:-1:-1;;;1348:25:8;;;;;;;;;;;;;;;;;;-1:-1:-1;;;1348:25:8;;;;;-1:-1:-1;;1348:25:8;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1390:8:8;;-1:-1:-1;1390:8:8;;-1:-1:-1;514:891:8;;;;;;;;;;;;:::o;1429:465::-;1506:4;1512:7;1521:4;1527:7;1536:6;1544;1552:7;1561;1580:28;;:::i;:::-;1611:21;;:4;;1623:8;;1611:21;;;;;;;;;;;;;;;;;;;1580:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;1580:52:8;;;-1:-1:-1;;;;;;1580:52:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1663:8:8;1580:52;1686:16;1717:7;:15;;;1746:7;:17;;;1778:7;:15;;;1807:7;:17;;;1839:7;:11;;;1864:7;:13;;;1642:245;;;;;;;;;;;;;;;;1429:465;;;;;;;;;;;;;:::o;26:2086::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;-1:-1:-1;;26:2086:8;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;26:2086:8;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.11;\n\nlibrary EventStoreLib{\n\n    struct EsEventStruct {\n        address TxOrigin;\n        uint Created;\n\n        bytes32 EventType; // Event Type + Version\n\n        bytes1 KeyType; // A - Address, U - UInt, B - Bytes32, X - Bytes32 (ascii)\n        bytes1 ValueType; // A - Address, U - UInt, B - Bytes32, X - Bytes32 (ascii)\n        \n        bytes32 Key; // Key \n        bytes32 Value; // Value \n    }\n\n    struct EsEventStorage {\n        EsEventStruct[] events;\n    }\n\n    // WRITE EVENT\n    function writeEvent(\n        EsEventStorage storage self, \n        bytes32 _eventType,\n        bytes1 _keyType,\n        bytes1 _valueType,\n        bytes32 _key,\n        bytes32 _value\n    ) returns (uint) {\n        uint _created = now;\n        uint _eventId = self.events.length;\n\n        EsEventStruct memory esEvent;\n        esEvent.TxOrigin = msg.sender;\n        esEvent.Created = _created;\n\n        esEvent.EventType = _eventType;\n\n        esEvent.KeyType = _keyType;\n        esEvent.ValueType = _valueType;\n\n        esEvent.Key = _key;\n        esEvent.Value = _value;\n\n        EsEvent(\n            _eventId,\n            esEvent.TxOrigin, \n            esEvent.Created,\n            esEvent.EventType,\n            esEvent.KeyType,\n            esEvent.ValueType,\n            esEvent.Key,\n            esEvent.Value\n        );\n        self.events.push(esEvent);\n        return _eventId;\n    }\n\n    // READ EVENT\n    function readEvent(EsEventStorage storage self, uint _eventId) \n    returns (uint, address, uint, bytes32, bytes1, bytes1, bytes32, bytes32) {\n        EsEventStruct memory esEvent = self.events[_eventId];\n        return (\n            _eventId, \n            esEvent.TxOrigin, \n            esEvent.Created,\n            esEvent.EventType,\n\n            esEvent.KeyType,\n            esEvent.ValueType,\n\n            esEvent.Key,\n            esEvent.Value\n        );\n    }\n\n    event EsEvent(\n        uint Id,\n        address TxOrigin,\n        uint Created,\n\n        bytes32 EventType,\n\n        bytes1 KeyType,\n        bytes1 ValueType,\n\n        bytes32 Key,\n        bytes32 Value\n    );\n\n}",
+  "sourcePath": "/Users/orie/Code/dapp/contracts/TransmuteFramework/TransmuteFramework/EventStore/EventStoreLib.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/orie/Code/dapp/contracts/TransmuteFramework/TransmuteFramework/EventStore/EventStoreLib.sol",
+      "exportedSymbols": {
+        "EventStoreLib": [
+          1026
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".11"
+          ]
+        },
+        "id": 838,
+        "name": "PragmaDirective",
+        "src": "0:24:8"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "library",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            1026
+          ],
+          "name": "EventStoreLib",
+          "scope": 1027
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "EventStoreLib.EsEventStruct",
+              "name": "EsEventStruct",
+              "scope": 1026,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "TxOrigin",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 839,
+                    "name": "ElementaryTypeName",
+                    "src": "85:7:8"
+                  }
+                ],
+                "id": 840,
+                "name": "VariableDeclaration",
+                "src": "85:16:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "Created",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 841,
+                    "name": "ElementaryTypeName",
+                    "src": "111:4:8"
+                  }
+                ],
+                "id": 842,
+                "name": "VariableDeclaration",
+                "src": "111:12:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "EventType",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 843,
+                    "name": "ElementaryTypeName",
+                    "src": "134:7:8"
+                  }
+                ],
+                "id": 844,
+                "name": "VariableDeclaration",
+                "src": "134:17:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "KeyType",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes1",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes1",
+                      "type": "bytes1"
+                    },
+                    "id": 845,
+                    "name": "ElementaryTypeName",
+                    "src": "186:6:8"
+                  }
+                ],
+                "id": 846,
+                "name": "VariableDeclaration",
+                "src": "186:14:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "ValueType",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes1",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes1",
+                      "type": "bytes1"
+                    },
+                    "id": 847,
+                    "name": "ElementaryTypeName",
+                    "src": "269:6:8"
+                  }
+                ],
+                "id": 848,
+                "name": "VariableDeclaration",
+                "src": "269:16:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "Key",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 849,
+                    "name": "ElementaryTypeName",
+                    "src": "363:7:8"
+                  }
+                ],
+                "id": 850,
+                "name": "VariableDeclaration",
+                "src": "363:11:8"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "Value",
+                  "scope": 853,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 851,
+                    "name": "ElementaryTypeName",
+                    "src": "392:7:8"
+                  }
+                ],
+                "id": 852,
+                "name": "VariableDeclaration",
+                "src": "392:13:8"
+              }
+            ],
+            "id": 853,
+            "name": "StructDefinition",
+            "src": "54:368:8"
+          },
+          {
+            "attributes": {
+              "canonicalName": "EventStoreLib.EsEventStorage",
+              "name": "EsEventStorage",
+              "scope": 1026,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "events",
+                  "scope": 857,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct EventStoreLib.EsEventStruct storage ref[] storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "struct EventStoreLib.EsEventStruct storage ref[] storage pointer"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "EsEventStruct",
+                          "referencedDeclaration": 853,
+                          "type": "struct EventStoreLib.EsEventStruct storage pointer"
+                        },
+                        "id": 854,
+                        "name": "UserDefinedTypeName",
+                        "src": "460:13:8"
+                      }
+                    ],
+                    "id": 855,
+                    "name": "ArrayTypeName",
+                    "src": "460:15:8"
+                  }
+                ],
+                "id": 856,
+                "name": "VariableDeclaration",
+                "src": "460:22:8"
+              }
+            ],
+            "id": 857,
+            "name": "StructDefinition",
+            "src": "428:61:8"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "writeEvent",
+              "payable": false,
+              "scope": 1026,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "self",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "type": "struct EventStoreLib.EsEventStorage storage pointer",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "EsEventStorage",
+                          "referencedDeclaration": 857,
+                          "type": "struct EventStoreLib.EsEventStorage storage pointer"
+                        },
+                        "id": 858,
+                        "name": "UserDefinedTypeName",
+                        "src": "543:14:8"
+                      }
+                    ],
+                    "id": 859,
+                    "name": "VariableDeclaration",
+                    "src": "543:27:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_eventType",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 860,
+                        "name": "ElementaryTypeName",
+                        "src": "581:7:8"
+                      }
+                    ],
+                    "id": 861,
+                    "name": "VariableDeclaration",
+                    "src": "581:18:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_keyType",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 862,
+                        "name": "ElementaryTypeName",
+                        "src": "609:6:8"
+                      }
+                    ],
+                    "id": 863,
+                    "name": "VariableDeclaration",
+                    "src": "609:15:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_valueType",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 864,
+                        "name": "ElementaryTypeName",
+                        "src": "634:6:8"
+                      }
+                    ],
+                    "id": 865,
+                    "name": "VariableDeclaration",
+                    "src": "634:17:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_key",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 866,
+                        "name": "ElementaryTypeName",
+                        "src": "661:7:8"
+                      }
+                    ],
+                    "id": 867,
+                    "name": "VariableDeclaration",
+                    "src": "661:12:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_value",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 868,
+                        "name": "ElementaryTypeName",
+                        "src": "683:7:8"
+                      }
+                    ],
+                    "id": 869,
+                    "name": "VariableDeclaration",
+                    "src": "683:14:8"
+                  }
+                ],
+                "id": 870,
+                "name": "ParameterList",
+                "src": "533:170:8"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 959,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 871,
+                        "name": "ElementaryTypeName",
+                        "src": "713:4:8"
+                      }
+                    ],
+                    "id": 872,
+                    "name": "VariableDeclaration",
+                    "src": "713:4:8"
+                  }
+                ],
+                "id": 873,
+                "name": "ParameterList",
+                "src": "712:6:8"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        875
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "_created",
+                          "scope": 959,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 874,
+                            "name": "ElementaryTypeName",
+                            "src": "729:4:8"
+                          }
+                        ],
+                        "id": 875,
+                        "name": "VariableDeclaration",
+                        "src": "729:13:8"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 3306,
+                          "type": "uint256",
+                          "value": "now"
+                        },
+                        "id": 876,
+                        "name": "Identifier",
+                        "src": "745:3:8"
+                      }
+                    ],
+                    "id": 877,
+                    "name": "VariableDeclarationStatement",
+                    "src": "729:19:8"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        879
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "_eventId",
+                          "scope": 959,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 878,
+                            "name": "ElementaryTypeName",
+                            "src": "758:4:8"
+                          }
+                        ],
+                        "id": 879,
+                        "name": "VariableDeclaration",
+                        "src": "758:13:8"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "member_name": "length",
+                          "referencedDeclaration": null,
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "events",
+                              "referencedDeclaration": 856,
+                              "type": "struct EventStoreLib.EsEventStruct storage ref[] storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 859,
+                                  "type": "struct EventStoreLib.EsEventStorage storage pointer",
+                                  "value": "self"
+                                },
+                                "id": 880,
+                                "name": "Identifier",
+                                "src": "774:4:8"
+                              }
+                            ],
+                            "id": 881,
+                            "name": "MemberAccess",
+                            "src": "774:11:8"
+                          }
+                        ],
+                        "id": 882,
+                        "name": "MemberAccess",
+                        "src": "774:18:8"
+                      }
+                    ],
+                    "id": 883,
+                    "name": "VariableDeclarationStatement",
+                    "src": "758:34:8"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        null
+                      ],
+                      "initialValue": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "esEvent",
+                          "scope": 959,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct EventStoreLib.EsEventStruct memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "EsEventStruct",
+                              "referencedDeclaration": 853,
+                              "type": "struct EventStoreLib.EsEventStruct storage pointer"
+                            },
+                            "id": 884,
+                            "name": "UserDefinedTypeName",
+                            "src": "803:13:8"
+                          }
+                        ],
+                        "id": 885,
+                        "name": "VariableDeclaration",
+                        "src": "803:28:8"
+                      }
+                    ],
+                    "id": 886,
+                    "name": "VariableDeclarationStatement",
+                    "src": "803:29:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "TxOrigin",
+                              "referencedDeclaration": 840,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 887,
+                                "name": "Identifier",
+                                "src": "841:7:8"
+                              }
+                            ],
+                            "id": 889,
+                            "name": "MemberAccess",
+                            "src": "841:16:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 3304,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 890,
+                                "name": "Identifier",
+                                "src": "860:3:8"
+                              }
+                            ],
+                            "id": 891,
+                            "name": "MemberAccess",
+                            "src": "860:10:8"
+                          }
+                        ],
+                        "id": 892,
+                        "name": "Assignment",
+                        "src": "841:29:8"
+                      }
+                    ],
+                    "id": 893,
+                    "name": "ExpressionStatement",
+                    "src": "841:29:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "Created",
+                              "referencedDeclaration": 842,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 894,
+                                "name": "Identifier",
+                                "src": "880:7:8"
+                              }
+                            ],
+                            "id": 896,
+                            "name": "MemberAccess",
+                            "src": "880:15:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 875,
+                              "type": "uint256",
+                              "value": "_created"
+                            },
+                            "id": 897,
+                            "name": "Identifier",
+                            "src": "898:8:8"
+                          }
+                        ],
+                        "id": 898,
+                        "name": "Assignment",
+                        "src": "880:26:8"
+                      }
+                    ],
+                    "id": 899,
+                    "name": "ExpressionStatement",
+                    "src": "880:26:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "EventType",
+                              "referencedDeclaration": 844,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 900,
+                                "name": "Identifier",
+                                "src": "917:7:8"
+                              }
+                            ],
+                            "id": 902,
+                            "name": "MemberAccess",
+                            "src": "917:17:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 861,
+                              "type": "bytes32",
+                              "value": "_eventType"
+                            },
+                            "id": 903,
+                            "name": "Identifier",
+                            "src": "937:10:8"
+                          }
+                        ],
+                        "id": 904,
+                        "name": "Assignment",
+                        "src": "917:30:8"
+                      }
+                    ],
+                    "id": 905,
+                    "name": "ExpressionStatement",
+                    "src": "917:30:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes1"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "KeyType",
+                              "referencedDeclaration": 846,
+                              "type": "bytes1"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 906,
+                                "name": "Identifier",
+                                "src": "958:7:8"
+                              }
+                            ],
+                            "id": 908,
+                            "name": "MemberAccess",
+                            "src": "958:15:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 863,
+                              "type": "bytes1",
+                              "value": "_keyType"
+                            },
+                            "id": 909,
+                            "name": "Identifier",
+                            "src": "976:8:8"
+                          }
+                        ],
+                        "id": 910,
+                        "name": "Assignment",
+                        "src": "958:26:8"
+                      }
+                    ],
+                    "id": 911,
+                    "name": "ExpressionStatement",
+                    "src": "958:26:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes1"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "ValueType",
+                              "referencedDeclaration": 848,
+                              "type": "bytes1"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 912,
+                                "name": "Identifier",
+                                "src": "994:7:8"
+                              }
+                            ],
+                            "id": 914,
+                            "name": "MemberAccess",
+                            "src": "994:17:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 865,
+                              "type": "bytes1",
+                              "value": "_valueType"
+                            },
+                            "id": 915,
+                            "name": "Identifier",
+                            "src": "1014:10:8"
+                          }
+                        ],
+                        "id": 916,
+                        "name": "Assignment",
+                        "src": "994:30:8"
+                      }
+                    ],
+                    "id": 917,
+                    "name": "ExpressionStatement",
+                    "src": "994:30:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "Key",
+                              "referencedDeclaration": 850,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 918,
+                                "name": "Identifier",
+                                "src": "1035:7:8"
+                              }
+                            ],
+                            "id": 920,
+                            "name": "MemberAccess",
+                            "src": "1035:11:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 867,
+                              "type": "bytes32",
+                              "value": "_key"
+                            },
+                            "id": 921,
+                            "name": "Identifier",
+                            "src": "1049:4:8"
+                          }
+                        ],
+                        "id": 922,
+                        "name": "Assignment",
+                        "src": "1035:18:8"
+                      }
+                    ],
+                    "id": 923,
+                    "name": "ExpressionStatement",
+                    "src": "1035:18:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bytes32"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "Value",
+                              "referencedDeclaration": 852,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 924,
+                                "name": "Identifier",
+                                "src": "1063:7:8"
+                              }
+                            ],
+                            "id": 926,
+                            "name": "MemberAccess",
+                            "src": "1063:13:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 869,
+                              "type": "bytes32",
+                              "value": "_value"
+                            },
+                            "id": 927,
+                            "name": "Identifier",
+                            "src": "1079:6:8"
+                          }
+                        ],
+                        "id": 928,
+                        "name": "Assignment",
+                        "src": "1063:22:8"
+                      }
+                    ],
+                    "id": 929,
+                    "name": "ExpressionStatement",
+                    "src": "1063:22:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes1",
+                                  "typeString": "bytes1"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes1",
+                                  "typeString": "bytes1"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1025,
+                              "type": "function (uint256,address,uint256,bytes32,bytes1,bytes1,bytes32,bytes32) constant",
+                              "value": "EsEvent"
+                            },
+                            "id": 930,
+                            "name": "Identifier",
+                            "src": "1096:7:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 879,
+                              "type": "uint256",
+                              "value": "_eventId"
+                            },
+                            "id": 931,
+                            "name": "Identifier",
+                            "src": "1117:8:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "TxOrigin",
+                              "referencedDeclaration": 840,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 932,
+                                "name": "Identifier",
+                                "src": "1139:7:8"
+                              }
+                            ],
+                            "id": 933,
+                            "name": "MemberAccess",
+                            "src": "1139:16:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "Created",
+                              "referencedDeclaration": 842,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 934,
+                                "name": "Identifier",
+                                "src": "1170:7:8"
+                              }
+                            ],
+                            "id": 935,
+                            "name": "MemberAccess",
+                            "src": "1170:15:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "EventType",
+                              "referencedDeclaration": 844,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 936,
+                                "name": "Identifier",
+                                "src": "1199:7:8"
+                              }
+                            ],
+                            "id": 937,
+                            "name": "MemberAccess",
+                            "src": "1199:17:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "KeyType",
+                              "referencedDeclaration": 846,
+                              "type": "bytes1"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 938,
+                                "name": "Identifier",
+                                "src": "1230:7:8"
+                              }
+                            ],
+                            "id": 939,
+                            "name": "MemberAccess",
+                            "src": "1230:15:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "ValueType",
+                              "referencedDeclaration": 848,
+                              "type": "bytes1"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 940,
+                                "name": "Identifier",
+                                "src": "1259:7:8"
+                              }
+                            ],
+                            "id": 941,
+                            "name": "MemberAccess",
+                            "src": "1259:17:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "Key",
+                              "referencedDeclaration": 850,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 942,
+                                "name": "Identifier",
+                                "src": "1290:7:8"
+                              }
+                            ],
+                            "id": 943,
+                            "name": "MemberAccess",
+                            "src": "1290:11:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "Value",
+                              "referencedDeclaration": 852,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 885,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 944,
+                                "name": "Identifier",
+                                "src": "1315:7:8"
+                              }
+                            ],
+                            "id": 945,
+                            "name": "MemberAccess",
+                            "src": "1315:13:8"
+                          }
+                        ],
+                        "id": 946,
+                        "name": "FunctionCall",
+                        "src": "1096:242:8"
+                      }
+                    ],
+                    "id": 947,
+                    "name": "ExpressionStatement",
+                    "src": "1096:242:8"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_struct$_EsEventStruct_$853_memory_ptr",
+                                  "typeString": "struct EventStoreLib.EsEventStruct memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (struct EventStoreLib.EsEventStruct storage ref) returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "events",
+                                  "referencedDeclaration": 856,
+                                  "type": "struct EventStoreLib.EsEventStruct storage ref[] storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 859,
+                                      "type": "struct EventStoreLib.EsEventStorage storage pointer",
+                                      "value": "self"
+                                    },
+                                    "id": 948,
+                                    "name": "Identifier",
+                                    "src": "1348:4:8"
+                                  }
+                                ],
+                                "id": 951,
+                                "name": "MemberAccess",
+                                "src": "1348:11:8"
+                              }
+                            ],
+                            "id": 952,
+                            "name": "MemberAccess",
+                            "src": "1348:16:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 885,
+                              "type": "struct EventStoreLib.EsEventStruct memory",
+                              "value": "esEvent"
+                            },
+                            "id": 953,
+                            "name": "Identifier",
+                            "src": "1365:7:8"
+                          }
+                        ],
+                        "id": 954,
+                        "name": "FunctionCall",
+                        "src": "1348:25:8"
+                      }
+                    ],
+                    "id": 955,
+                    "name": "ExpressionStatement",
+                    "src": "1348:25:8"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 873
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 879,
+                          "type": "uint256",
+                          "value": "_eventId"
+                        },
+                        "id": 956,
+                        "name": "Identifier",
+                        "src": "1390:8:8"
+                      }
+                    ],
+                    "id": 957,
+                    "name": "Return",
+                    "src": "1383:15:8"
+                  }
+                ],
+                "id": 958,
+                "name": "Block",
+                "src": "719:686:8"
+              }
+            ],
+            "id": 959,
+            "name": "FunctionDefinition",
+            "src": "514:891:8"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "readEvent",
+              "payable": false,
+              "scope": 1026,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "self",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "type": "struct EventStoreLib.EsEventStorage storage pointer",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "EsEventStorage",
+                          "referencedDeclaration": 857,
+                          "type": "struct EventStoreLib.EsEventStorage storage pointer"
+                        },
+                        "id": 960,
+                        "name": "UserDefinedTypeName",
+                        "src": "1448:14:8"
+                      }
+                    ],
+                    "id": 961,
+                    "name": "VariableDeclaration",
+                    "src": "1448:27:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_eventId",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 962,
+                        "name": "ElementaryTypeName",
+                        "src": "1477:4:8"
+                      }
+                    ],
+                    "id": 963,
+                    "name": "VariableDeclaration",
+                    "src": "1477:13:8"
+                  }
+                ],
+                "id": 964,
+                "name": "ParameterList",
+                "src": "1447:44:8"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 965,
+                        "name": "ElementaryTypeName",
+                        "src": "1506:4:8"
+                      }
+                    ],
+                    "id": 966,
+                    "name": "VariableDeclaration",
+                    "src": "1506:4:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 967,
+                        "name": "ElementaryTypeName",
+                        "src": "1512:7:8"
+                      }
+                    ],
+                    "id": 968,
+                    "name": "VariableDeclaration",
+                    "src": "1512:7:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 969,
+                        "name": "ElementaryTypeName",
+                        "src": "1521:4:8"
+                      }
+                    ],
+                    "id": 970,
+                    "name": "VariableDeclaration",
+                    "src": "1521:4:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 971,
+                        "name": "ElementaryTypeName",
+                        "src": "1527:7:8"
+                      }
+                    ],
+                    "id": 972,
+                    "name": "VariableDeclaration",
+                    "src": "1527:7:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 973,
+                        "name": "ElementaryTypeName",
+                        "src": "1536:6:8"
+                      }
+                    ],
+                    "id": 974,
+                    "name": "VariableDeclaration",
+                    "src": "1536:6:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 975,
+                        "name": "ElementaryTypeName",
+                        "src": "1544:6:8"
+                      }
+                    ],
+                    "id": 976,
+                    "name": "VariableDeclaration",
+                    "src": "1544:6:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 977,
+                        "name": "ElementaryTypeName",
+                        "src": "1552:7:8"
+                      }
+                    ],
+                    "id": 978,
+                    "name": "VariableDeclaration",
+                    "src": "1552:7:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 1007,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 979,
+                        "name": "ElementaryTypeName",
+                        "src": "1561:7:8"
+                      }
+                    ],
+                    "id": 980,
+                    "name": "VariableDeclaration",
+                    "src": "1561:7:8"
+                  }
+                ],
+                "id": 981,
+                "name": "ParameterList",
+                "src": "1505:64:8"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        983
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "esEvent",
+                          "scope": 1007,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct EventStoreLib.EsEventStruct memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "EsEventStruct",
+                              "referencedDeclaration": 853,
+                              "type": "struct EventStoreLib.EsEventStruct storage pointer"
+                            },
+                            "id": 982,
+                            "name": "UserDefinedTypeName",
+                            "src": "1580:13:8"
+                          }
+                        ],
+                        "id": 983,
+                        "name": "VariableDeclaration",
+                        "src": "1580:28:8"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct EventStoreLib.EsEventStruct storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "events",
+                              "referencedDeclaration": 856,
+                              "type": "struct EventStoreLib.EsEventStruct storage ref[] storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 961,
+                                  "type": "struct EventStoreLib.EsEventStorage storage pointer",
+                                  "value": "self"
+                                },
+                                "id": 984,
+                                "name": "Identifier",
+                                "src": "1611:4:8"
+                              }
+                            ],
+                            "id": 985,
+                            "name": "MemberAccess",
+                            "src": "1611:11:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 963,
+                              "type": "uint256",
+                              "value": "_eventId"
+                            },
+                            "id": 986,
+                            "name": "Identifier",
+                            "src": "1623:8:8"
+                          }
+                        ],
+                        "id": 987,
+                        "name": "IndexAccess",
+                        "src": "1611:21:8"
+                      }
+                    ],
+                    "id": 988,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1580:52:8"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 981
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(uint256,address,uint256,bytes32,bytes1,bytes1,bytes32,bytes32)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 963,
+                              "type": "uint256",
+                              "value": "_eventId"
+                            },
+                            "id": 989,
+                            "name": "Identifier",
+                            "src": "1663:8:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "TxOrigin",
+                              "referencedDeclaration": 840,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 990,
+                                "name": "Identifier",
+                                "src": "1686:7:8"
+                              }
+                            ],
+                            "id": 991,
+                            "name": "MemberAccess",
+                            "src": "1686:16:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "Created",
+                              "referencedDeclaration": 842,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 992,
+                                "name": "Identifier",
+                                "src": "1717:7:8"
+                              }
+                            ],
+                            "id": 993,
+                            "name": "MemberAccess",
+                            "src": "1717:15:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "EventType",
+                              "referencedDeclaration": 844,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 994,
+                                "name": "Identifier",
+                                "src": "1746:7:8"
+                              }
+                            ],
+                            "id": 995,
+                            "name": "MemberAccess",
+                            "src": "1746:17:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "KeyType",
+                              "referencedDeclaration": 846,
+                              "type": "bytes1"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 996,
+                                "name": "Identifier",
+                                "src": "1778:7:8"
+                              }
+                            ],
+                            "id": 997,
+                            "name": "MemberAccess",
+                            "src": "1778:15:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "ValueType",
+                              "referencedDeclaration": 848,
+                              "type": "bytes1"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 998,
+                                "name": "Identifier",
+                                "src": "1807:7:8"
+                              }
+                            ],
+                            "id": 999,
+                            "name": "MemberAccess",
+                            "src": "1807:17:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "Key",
+                              "referencedDeclaration": 850,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 1000,
+                                "name": "Identifier",
+                                "src": "1839:7:8"
+                              }
+                            ],
+                            "id": 1001,
+                            "name": "MemberAccess",
+                            "src": "1839:11:8"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "Value",
+                              "referencedDeclaration": 852,
+                              "type": "bytes32"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 983,
+                                  "type": "struct EventStoreLib.EsEventStruct memory",
+                                  "value": "esEvent"
+                                },
+                                "id": 1002,
+                                "name": "Identifier",
+                                "src": "1864:7:8"
+                              }
+                            ],
+                            "id": 1003,
+                            "name": "MemberAccess",
+                            "src": "1864:13:8"
+                          }
+                        ],
+                        "id": 1004,
+                        "name": "TupleExpression",
+                        "src": "1649:238:8"
+                      }
+                    ],
+                    "id": 1005,
+                    "name": "Return",
+                    "src": "1642:245:8"
+                  }
+                ],
+                "id": 1006,
+                "name": "Block",
+                "src": "1570:324:8"
+              }
+            ],
+            "id": 1007,
+            "name": "FunctionDefinition",
+            "src": "1429:465:8"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "EsEvent"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Id",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1008,
+                        "name": "ElementaryTypeName",
+                        "src": "1923:4:8"
+                      }
+                    ],
+                    "id": 1009,
+                    "name": "VariableDeclaration",
+                    "src": "1923:7:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "TxOrigin",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 1010,
+                        "name": "ElementaryTypeName",
+                        "src": "1940:7:8"
+                      }
+                    ],
+                    "id": 1011,
+                    "name": "VariableDeclaration",
+                    "src": "1940:16:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Created",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 1012,
+                        "name": "ElementaryTypeName",
+                        "src": "1966:4:8"
+                      }
+                    ],
+                    "id": 1013,
+                    "name": "VariableDeclaration",
+                    "src": "1966:12:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "EventType",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 1014,
+                        "name": "ElementaryTypeName",
+                        "src": "1989:7:8"
+                      }
+                    ],
+                    "id": 1015,
+                    "name": "VariableDeclaration",
+                    "src": "1989:17:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "KeyType",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 1016,
+                        "name": "ElementaryTypeName",
+                        "src": "2017:6:8"
+                      }
+                    ],
+                    "id": 1017,
+                    "name": "VariableDeclaration",
+                    "src": "2017:14:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "ValueType",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes1",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes1",
+                          "type": "bytes1"
+                        },
+                        "id": 1018,
+                        "name": "ElementaryTypeName",
+                        "src": "2041:6:8"
+                      }
+                    ],
+                    "id": 1019,
+                    "name": "VariableDeclaration",
+                    "src": "2041:16:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Key",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 1020,
+                        "name": "ElementaryTypeName",
+                        "src": "2068:7:8"
+                      }
+                    ],
+                    "id": 1021,
+                    "name": "VariableDeclaration",
+                    "src": "2068:11:8"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "Value",
+                      "scope": 1025,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 1022,
+                        "name": "ElementaryTypeName",
+                        "src": "2089:7:8"
+                      }
+                    ],
+                    "id": 1023,
+                    "name": "VariableDeclaration",
+                    "src": "2089:13:8"
+                  }
+                ],
+                "id": 1024,
+                "name": "ParameterList",
+                "src": "1913:195:8"
+              }
+            ],
+            "id": 1025,
+            "name": "EventDefinition",
+            "src": "1900:209:8"
+          }
+        ],
+        "id": 1026,
+        "name": "ContractDefinition",
+        "src": "26:2086:8"
+      }
+    ],
+    "id": 1027,
+    "name": "SourceUnit",
+    "src": "0:2112:8"
+  },
+  "networks": {
+    "1507489357243": {
+      "events": {
+        "0x34fda208d95da3b89ce2ca6e488201282198f339ef139dd80138a430c8d03a24": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "Id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "TxOrigin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "Created",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "EventType",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "KeyType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "ValueType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "Key",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "Value",
+              "type": "bytes32"
+            }
+          ],
+          "name": "EsEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xc1039f7d84450b6a3a144fad63ad8c34d74bf424"
+    },
+    "1507496234116": {
+      "events": {
+        "0x34fda208d95da3b89ce2ca6e488201282198f339ef139dd80138a430c8d03a24": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "Id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "TxOrigin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "Created",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "EventType",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "KeyType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "ValueType",
+              "type": "bytes1"
+            },
+            {
+              "indexed": false,
+              "name": "Key",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "Value",
+              "type": "bytes32"
+            }
+          ],
+          "name": "EsEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xe44314c15a774eebab4b66865e182d9f2a429fab"
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2017-10-08T20:58:06.807Z"
+}

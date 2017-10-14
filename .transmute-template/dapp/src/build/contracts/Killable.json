@@ -1,0 +1,254 @@
+{
+  "contractName": "Killable",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "kill",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60606040525b60008054600160a060020a03191633600160a060020a03161790555b5b610158806100316000396000f300606060405263ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166341c0e1b581146100535780638da5cb5b14610068578063f2fde38b14610097575b600080fd5b341561005e57600080fd5b6100666100b8565b005b341561007357600080fd5b61007b6100c8565b604051600160a060020a03909116815260200160405180910390f35b34156100a257600080fd5b610066600160a060020a03600435166100d7565b005b600054600160a060020a0316ff5b565b600054600160a060020a031681565b60005433600160a060020a039081169116141561012657600160a060020a03811615610126576000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b5b505600a165627a7a7230582090be9a065587b642dc39d28e371b4f5e29fac0ba6da8504dc76e36227b183c380029",
+  "deployedBytecode": "0x606060405263ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166341c0e1b581146100535780638da5cb5b14610068578063f2fde38b14610097575b600080fd5b341561005e57600080fd5b6100666100b8565b005b341561007357600080fd5b61007b6100c8565b604051600160a060020a03909116815260200160405180910390f35b34156100a257600080fd5b610066600160a060020a03600435166100d7565b005b600054600160a060020a0316ff5b565b600054600160a060020a031681565b60005433600160a060020a039081169116141561012657600160a060020a03811615610126576000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b5b505600a165627a7a7230582090be9a065587b642dc39d28e371b4f5e29fac0ba6da8504dc76e36227b183c380029",
+  "sourceMap": "176:81:17:-;;;243:48:18;268:5;:18;;-1:-1:-1;;;;;;268:18:18;276:10;-1:-1:-1;;;;;268:18:18;;;;243:48;176:81:17;;;;;;;",
+  "deployedSourceMap": "176:81:17:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;209:46;;;;;;;;;;;;;;218:20:18;;;;;;;;;;;;;;;-1:-1:-1;;;;;218:20:18;;;;;;;;;;;;;;363:110;;;;;;;;;;-1:-1:-1;;;;;363:110:18;;;;;;;209:46:17;244:5;;-1:-1:-1;;;;;244:5:17;231:19;209:46;:::o;218:20:18:-;;;-1:-1:-1;;;;;218:20:18;;:::o;363:110::-;340:5;;326:10;-1:-1:-1;;;;;326:19:18;;;340:5;;326:19;322:32;;;-1:-1:-1;;;;;428:22:18;;;424:44;;452:5;:16;;-1:-1:-1;;452:16:18;-1:-1:-1;;;;;452:16:18;;;;;424:44;353:1;322:32;363:110;;:::o",
+  "source": "pragma solidity ^0.4.11;\n\nimport \"../ownership/Ownable.sol\";\n\n/*\n * Killable\n * Base contract that can be killed by owner. All funds in contract will be sent to the owner.\n */\ncontract Killable is Ownable {\n  function kill() {\n    selfdestruct(owner);\n  }\n}\n",
+  "sourcePath": "/Users/orie/Code/dapp/contracts/TransmuteFramework/TransmuteFramework/zeppelin/lifecycle/Killable.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/orie/Code/dapp/contracts/TransmuteFramework/TransmuteFramework/zeppelin/lifecycle/Killable.sol",
+      "exportedSymbols": {
+        "Killable": [
+          3260
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".11"
+          ]
+        },
+        "id": 3248,
+        "name": "PragmaDirective",
+        "src": "0:24:17"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 3302,
+          "absolutePath": "/Users/orie/Code/dapp/contracts/TransmuteFramework/TransmuteFramework/zeppelin/ownership/Ownable.sol",
+          "file": "../ownership/Ownable.sol",
+          "scope": 3261,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 3249,
+        "name": "ImportDirective",
+        "src": "26:34:17"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            3301
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            3260,
+            3301
+          ],
+          "name": "Killable",
+          "scope": 3261
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Ownable",
+                  "referencedDeclaration": 3301,
+                  "type": "contract Ownable"
+                },
+                "id": 3250,
+                "name": "UserDefinedTypeName",
+                "src": "197:7:17"
+              }
+            ],
+            "id": 3251,
+            "name": "InheritanceSpecifier",
+            "src": "197:7:17"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "kill",
+              "payable": false,
+              "scope": 3260,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3252,
+                "name": "ParameterList",
+                "src": "222:2:17"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3253,
+                "name": "ParameterList",
+                "src": "225:0:17"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3308,
+                              "type": "function (address)",
+                              "value": "selfdestruct"
+                            },
+                            "id": 3254,
+                            "name": "Identifier",
+                            "src": "231:12:17"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3264,
+                              "type": "address",
+                              "value": "owner"
+                            },
+                            "id": 3255,
+                            "name": "Identifier",
+                            "src": "244:5:17"
+                          }
+                        ],
+                        "id": 3256,
+                        "name": "FunctionCall",
+                        "src": "231:19:17"
+                      }
+                    ],
+                    "id": 3257,
+                    "name": "ExpressionStatement",
+                    "src": "231:19:17"
+                  }
+                ],
+                "id": 3258,
+                "name": "Block",
+                "src": "225:30:17"
+              }
+            ],
+            "id": 3259,
+            "name": "FunctionDefinition",
+            "src": "209:46:17"
+          }
+        ],
+        "id": 3260,
+        "name": "ContractDefinition",
+        "src": "176:81:17"
+      }
+    ],
+    "id": 3261,
+    "name": "SourceUnit",
+    "src": "0:258:17"
+  },
+  "networks": {
+    "1507489357243": {
+      "events": {},
+      "links": {},
+      "address": "0x8cc5ae5b027c1634f93b4c953b9743965fd65cb2"
+    },
+    "1507496234116": {
+      "events": {},
+      "links": {},
+      "address": "0xf8e2835447bc28b11b880d8a7b63af20458020be"
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2017-10-08T20:58:06.766Z"
+}
