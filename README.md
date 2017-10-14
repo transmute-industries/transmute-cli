@@ -1,6 +1,8 @@
 # Transmute CLI 
  
 Work in progress CLI. 
+
+Very alpha, expect breaking changes...
  
 ### Getting Started 
  
