@@ -18,11 +18,6 @@ module.exports = vorpal => {
     });
 
   vorpal.command("accounts", "list accounts").action(async (args, callback) => {
-    const { TransmuteFramework, transmuteConfig } = require(path.join(
-      process.cwd(),
-      "./functions/.transmute/environment.web"
-    ));
-    vorpal.T = TransmuteFramework.init(transmuteConfig);
     const accounts = await vorpal.T.getAccounts();
     accounts.forEach(account => {
       vorpal.logger.log("📮  " + account);

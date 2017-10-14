@@ -23,7 +23,47 @@ module.exports = vorpal => {
   vorpal
     .command("login", "login to firebase with transmute-framework")
     .action(async (args, callback) => {
-      await vorpal.T.Firebase.login();
+      let user = await vorpal.T.Firebase.login();
+      vorpal.logger.info("Logged in as: " + user.uid);
+      callback();
+    });
+
+  vorpal
+    .command("logout", "logout to firebase with transmute-framework")
+    .action(async (args, callback) => {
+      let user = await vorpal.T.Firebase.logout();
+      vorpal.logger.info("Logged logged out.");
+      callback();
+    });
+
+  vorpal
+    .command("token_challenges", "list all token_challenges (requires login)")
+    .action(async (args, callback) => {
+      // see https://github.com/firebase/firebase-js-sdk/issues/198
+      // currently only admin sdk can access firestore...
+      // in the future, the cli will be able login and then use firestore...
+      // this will be handy for data exporting, migrating, rebuilding etc...
+
+      const { TransmuteFramework, transmuteConfig } = require(path.join(
+        process.cwd(),
+        "./functions/.transmute/environment.node"
+      ));
+      vorpal.T = TransmuteFramework.init(transmuteConfig);
+
+      await vorpal.T.db
+        .collection("token_challenges")
+        .get()
+        .then(querySnapshot => {
+          // console.log(querySnapshot);
+          querySnapshot.forEach(doc => {
+            // console.log(`${doc.id} => `, doc.data());
+            vorpal.logger.info(doc.id);
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
       callback();
     });
 };

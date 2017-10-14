@@ -36,6 +36,20 @@ transmute serve
 yarn start
 ```
 
+#### Security Rules
+
+Use firestore.rules to restrict access to everything stored by the framework.
+
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+```
+
 #### Dev Commands 
 ``` 
 $ npm install 

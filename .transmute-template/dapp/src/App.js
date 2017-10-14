@@ -4,7 +4,7 @@ import "./App.css";
 
 import { TransmuteFramework, transmuteConfig } from "./environment.web";
 
-const T = TransmuteFramework.init(transmuteConfig); 
+const T = TransmuteFramework.init(transmuteConfig);
 
 console.log(T);
 
@@ -27,6 +27,15 @@ class App extends Component {
           }}
         >
           Login
+        </button>
+        <button
+          onClick={() => {
+            T.Firebase.logout().then(user => {
+              console.log(user);
+            });
+          }}
+        >
+          Logout
         </button>
         <button
           onClick={() => {

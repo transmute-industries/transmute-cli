@@ -30,7 +30,18 @@ const path = require("path");
 //   vorpal.T = T;
 // }
 
+
 vorpal.use(vorpalLog);
+
+try{
+  const { TransmuteFramework, transmuteConfig } = require(path.join(
+    process.cwd(),
+    "./functions/.transmute/environment.web"
+  ));
+  vorpal.T = TransmuteFramework.init(transmuteConfig); 
+} catch(e) {
+  vorpal.logger.warn('No ./functions/.transmute/environment.web was detected. Firebase CLI will not function.')
+}
 
 vorpal.use(vorpalTour, {
   command: "tour",
