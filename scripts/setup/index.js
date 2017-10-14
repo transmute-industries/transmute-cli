@@ -5,6 +5,10 @@ const fs = Promise.promisifyAll(require("fs"));
 
 const shell = require("shelljs");
 
+const USE_YARN = "/Users/orie/Code/transmute-cli" === process.cwd();
+
+const COMMAND_BASE = USE_YARN ? "yarn transmute" : "transmute";
+
 module.exports = vorpal => {
   const getOrCreateRCDir = async () => {
     try {
@@ -55,26 +59,27 @@ module.exports = vorpal => {
       }
 
       let fromSecretPath =
-        args.options.from || "/Users/orie/Code/secrets/.transmute";
+        args.options.from;
 
       await getOrCreateRCDir();
 
-      // console.log(require("../env/generate/js-web"));
       let cmd, secretEnvPath;
       //OVERWRITE WITH REAL SECRETS
-      try {
-        secretEnvPath = path.join(os.homedir(), ".transmute");
-        cmd = `cp -R ${fromSecretPath}/* ${secretEnvPath}`;
-        if (shell.exec(cmd).code !== 0) {
-          vorpal.logger.fatal("Error: failed command: " + cmd);
-          shell.exit(1);
+      if (fromSecretPath) {
+        try {
+          secretEnvPath = path.join(os.homedir(), ".transmute");
+          cmd = `cp -R ${fromSecretPath}/* ${secretEnvPath}`;
+          if (shell.exec(cmd).code !== 0) {
+            vorpal.logger.fatal("Error: failed command: " + cmd);
+            shell.exit(1);
+          }
+          vorpal.logger.info("Setup secrets have been overwritten!");
+        } catch (e) {
+          vorpal.logger.warn("Be sure to update: secretEnvPath");
         }
-        vorpal.logger.info("Setup secrets have been overwritten!");
-      } catch (e) {
-        vorpal.logger.warn("Be sure to update: secretEnvPath");
-      }
 
-      vorpal.logger.info(`cat ${secretEnvPath}`);
+        vorpal.logger.info(`cat ${secretEnvPath}`);
+      }
 
       let prefix = "dapp";
 
@@ -102,7 +107,7 @@ module.exports = vorpal => {
         "environment.node"
       );
 
-      let langs = [ "js"];
+      let langs = ["js"];
 
       await Promise.all(
         langs.map(async lang => {

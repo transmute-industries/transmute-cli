@@ -5,8 +5,7 @@ const fs = Promise.promisifyAll(require("fs"));
 
 const shell = require("shelljs");
 
-
-const USE_YARN = true;
+const USE_YARN = '/Users/orie/Code/transmute-cli' === process.cwd();
 
 const COMMAND_BASE = USE_YARN ? 'yarn transmute' : 'transmute'
 
