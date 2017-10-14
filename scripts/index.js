@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = vorpal => {
   vorpal.logger.log("👑  Transmute ");
   vorpal
@@ -16,6 +18,11 @@ module.exports = vorpal => {
     });
 
   vorpal.command("accounts", "list accounts").action(async (args, callback) => {
+    const { TransmuteFramework, transmuteConfig } = require(path.join(
+      process.cwd(),
+      "./functions/.transmute/environment.web"
+    ));
+    vorpal.T = TransmuteFramework.init(transmuteConfig);
     const accounts = await vorpal.T.getAccounts();
     accounts.forEach(account => {
       vorpal.logger.log("📮  " + account);
@@ -36,7 +43,6 @@ module.exports = vorpal => {
   require("./event-store")(vorpal);
   require("./ecrecover")(vorpal);
   require("./firebase")(vorpal);
-
 
   return vorpal;
 };

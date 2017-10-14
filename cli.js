@@ -8,27 +8,27 @@ const path = require("path");
 // https://github.com/vorpaljs/vorpal-tour/
 // https://github.com/AljoschaMeyer/vorpal-log/
 
-let webEnv
-try {
-  webEnv = require(path.join(process.cwd(), "environment.web"));
-} catch (e) {
-  // throw e;
-}
-try {
-  webEnv = require(path.join(process.cwd(), "src", "environment.web"));
-} catch (e) {
-  // throw e;
-}
+// let webEnv
+// try {
+//   webEnv = require(path.join(process.cwd(), "environment.web"));
+// } catch (e) {
+//   // throw e;
+// }
+// try {
+//   webEnv = require(path.join(process.cwd(), "src", "environment.web"));
+// } catch (e) {
+//   // throw e;
+// }
 
-if (!webEnv) {
-  console.error(`Could not require transmute framework from: ./environment.web.js or ./src/environment.web.js`);
-  console.log(`Have you run 'cp ~/.transmute/environment.web.js .' or 'transmute init'  ?`);
-} else {
+// if (!webEnv) {
+//   console.error(`Could not require transmute framework from: ./environment.web.js or ./src/environment.web.js`);
+//   console.log(`Have you run 'cp ~/.transmute/environment.web.js .' or 'transmute init'  ?`);
+// } else {
  
-  let T = webEnv.TransmuteFramework;
-  // console.log(T)
-  vorpal.T = T;
-}
+//   let T = webEnv.TransmuteFramework;
+//   // console.log(T)
+//   vorpal.T = T;
+// }
 
 vorpal.use(vorpalLog);
 
