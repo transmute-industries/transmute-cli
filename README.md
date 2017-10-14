@@ -11,6 +11,25 @@ $ npm install -g transmute-cli@latest
 $ yarn global add transmute-cli@latest
 ``` 
 
+### Setup from Local .transmute
+```sh
+transmute setup --reset --from ~/Code/secrets/.transmute/
+mkdir smoke && cd smoke
+transmute init .
+cd dapp
+yarn install
+```
+
+#### Serve Functions Locally
+```sh
+transmute serve
+```
+
+#### Start App 
+```sh
+yarn start
+```
+
 #### Dev Commands 
 ``` 
 $ npm install 

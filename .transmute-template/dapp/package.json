@@ -11,6 +11,7 @@
     "transmute-framework": "^0.1.49-firestore-test.7"
   },
   "scripts": {
+    "postinstall": "cd functions && yarn install && cd ..",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

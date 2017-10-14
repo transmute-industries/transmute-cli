@@ -24,8 +24,17 @@ module.exports = vorpal => {
         shell.exit(1);
       }
 
+      // Copy move .transmute-template to ~/.transmute
       let template_dir = path.join(__dirname, "../../.transmute-template/*");
       cmd = `cp -r ${template_dir} ~/.transmute/`;
+      vorpal.logger.log(cmd);
+      if (shell.exec(cmd).code !== 0) {
+        vorpal.logger.fatal("Error: failed command: " + cmd);
+        shell.exit(1);
+      }
+
+      // Rename example env to secret env.
+      cmd = `mv ~/.transmute/environment.example.env ~/.transmute/environment.secret.env`;
       vorpal.logger.log(cmd);
       if (shell.exec(cmd).code !== 0) {
         vorpal.logger.fatal("Error: failed command: " + cmd);
@@ -58,8 +67,7 @@ module.exports = vorpal => {
         await destroyRCDir();
       }
 
-      let fromSecretPath =
-        args.options.from;
+      let fromSecretPath = args.options.from;
 
       await getOrCreateRCDir();
 

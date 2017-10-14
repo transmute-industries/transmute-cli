@@ -7871,6 +7871,27 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
 
+transmute-cli@0.1.28:
+  version "0.1.28"
+  resolved "https://registry.yarnpkg.com/transmute-cli/-/transmute-cli-0.1.28.tgz#8f8e7151ea37caad94e72c15fb4e29205fcd7027"
+  dependencies:
+    "@google-cloud/firestore" "^0.8.1"
+    bluebird "^3.5.1"
+    dotenv "^4.0.0"
+    firebase "^4.5.0"
+    firebase-admin "^5.4.1"
+    firebase-functions "^0.7.0"
+    global "^4.3.2"
+    mustache "^2.3.0"
+    ncp "^2.0.0"
+    replace-in-file "^3.0.0-beta.2"
+    request-promise "^4.2.2"
+    shelljs "^0.7.8"
+    transmute-framework "0.1.49-firestore-test.7"
+    vorpal "^1.12.0"
+    vorpal-log "^1.1.0"
+    vorpal-tour "^0.0.5"
+
 transmute-framework@0.1.49-firestore-test.7:
   version "0.1.49-firestore-test.7"
   resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.7.tgz#2e94ed74855ddb61e7f7ad2f68bddaa00e72001a"
