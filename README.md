@@ -34,13 +34,13 @@ $ yarn transmute unpatch
 #### JavaScript 
 ```
 $ yarn transmute gen-node js dapp ../secrets/environment.secret.env ./environment.node.js
-$ yarn transmute gen-web js ../secrets/firebaseConfig.json ./environment.web.js
+$ yarn transmute gen-web js ../secrets/firebase-client-config.json ./environment.web.js
 ```
 
 #### TypeScript 
 ```
 $ yarn transmute gen-node ts dapp ../secrets/environment.secret.env ./environment.node.ts
-$ yarn transmute gen-web ts ../secrets/firebaseConfig.json ./environment.web.ts
+$ yarn transmute gen-web ts ../secrets/firebase-client-config.json ./environment.web.ts
 ```
 
 #### Misc
@@ -48,8 +48,32 @@ $ yarn transmute gen-web ts ../secrets/firebaseConfig.json ./environment.web.ts
 $ yarn transmute gen-mask ./environment.secret.env ./environment.example.env 
 $ yarn transmute mig-env firebase transmute ./environment.secret.env 
 ```
+
+
+### TestRPC with ngrok
+
+```yml
+authtoken: TOKEN
+tunnels:
+  functions:
+    addr: 3001
+    proto: http
+    hostname: functions.transmute.industries
+
+  testrpc:
+    addr: 8545
+    proto: http
+    hostname: testrpc.transmute.industries
+```
+
+```sh
+ngrok start testrpc functions
+```
+
+
  
 #### Reading 
  
 - https://firebase.google.com/docs/functions/config-env 
 - https://www.npmjs.com/package/dotenv
+

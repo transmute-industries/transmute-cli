@@ -5,7 +5,7 @@ const Promise = require("bluebird");
 const readFile = Promise.promisify(require("fs").readFile);
 const writeFile = Promise.promisify(require("fs").writeFile);
 
-// yarn transmute gen-web js ../secrets/firebaseConfig.json ./environment.web.js
+// yarn transmute gen-web js ../secrets/firebase-client-config.json ./environment.web.js
 
 module.exports = async (args, callback) => {
   let { firebaseConfigPath, outputEnvPath } = args;

@@ -20,7 +20,7 @@ module.exports = async (args, callback) => {
       let [key, value] = line.split("=");
       constExports.push(key);
       constDeclarations.push(
-        `const ${key} = (FRAMEWORK_ENV === "NODE_LOCAL") ? process.env.${key} : config.${prefix}.${key.toLowerCase()};`
+        `const ${key} = process.env.${key};`
       );
     }
   });

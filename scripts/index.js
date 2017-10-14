@@ -27,13 +27,16 @@ module.exports = vorpal => {
   require("./setup")(vorpal);
   require("./init")(vorpal);
   require("./env")(vorpal);
+  require("./env/migrate/transmute")(vorpal);
   require("./serve")(vorpal);
   require("./patch")(vorpal);
+  require("./patch/secret-env")(vorpal);
   require("./truffle")(vorpal);
   require("./ipfs")(vorpal);
   require("./event-store")(vorpal);
   require("./ecrecover")(vorpal);
   require("./firebase")(vorpal);
+
 
   return vorpal;
 };

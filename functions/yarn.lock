@@ -1585,6 +1585,10 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
+dotenv@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
+
 drbg.js@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/drbg.js/-/drbg.js-1.0.1.tgz#3e36b6c42b37043823cdbc332d58f31e2445480b"
@@ -5011,9 +5015,9 @@ tough-cookie@~2.3.0, tough-cookie@~2.3.3:
   dependencies:
     punycode "^1.4.1"
 
-transmute-framework@0.1.49-firestore-test.6:
-  version "0.1.49-firestore-test.6"
-  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.6.tgz#2f556ef7c2eeaf6773d7cc82143e46dbe543d991"
+transmute-framework@^0.1.49-firestore-test.7:
+  version "0.1.49-firestore-test.7"
+  resolved "https://registry.yarnpkg.com/transmute-framework/-/transmute-framework-0.1.49-firestore-test.7.tgz#2e94ed74855ddb61e7f7ad2f68bddaa00e72001a"
   dependencies:
     "@types/lodash" "4.14.77"
     accesscontrol "2.0.0"

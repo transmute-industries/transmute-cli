@@ -15,11 +15,11 @@ try {
 }
 // console.log(cwd)
 try {
-  env = require(path.join(cwd, "./functions/environment.node"));
+  env = require(path.join(cwd, "./functions/.transmute/environment.node"));
 } catch (e) {
-  console.warn("Error requiring ./functions/environment.node");
+  console.warn("Error requiring ./functions/.transmute/environment.node");
   console.warn("Have you run `transmute setup` ?");
-  console.warn("Are the paths in ~/.transmute/environment.secret.env correct?");
+  console.warn("Are the paths in ./functions/.transmute/environment.secret.env correct?");
   console.warn("Have you run `transmute init` ?");
   throw e;
 }
@@ -50,52 +50,51 @@ const extractParams = async request => {
       });
   });
   return {
-    name: pathname,
+    name: pathname.substring(1),
     query: querystring.parse(url.parse(request.url).query),
-    body: requestBodyJson,
-    env
+    body: requestBodyJson
   };
 };
 
 async function onRequest(request, response) {
-  var pathname = url.parse(request.url).pathname;
-  var functionName = pathname.split("/")[1];
+
+  let functionParams = await extractParams(request);
+  let functionName = functionParams.name
+
   let headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
   };
+
   if (functionName === "favicon.ico") {
+    // generate qr code and return it here...
     fs
-      .createReadStream(path.join(__dirname, "..", "favicon.ico"))
+      .createReadStream(path.join(process.cwd(), "/favicon.ico"))
       .pipe(response);
-  } else {
-    if (functions[functionName]) {
-      let functionParams = await extractParams(request);
-      let functionResponse = await functions[functionName](functionParams);
+      return;
+  }
 
-      // console.log(request.url);
-      // console.log(_.omit(functionParams, "db", "admin"), functionResponse);
-
-      if (!functionResponse.redirect) {
-        response.writeHead(functionResponse.status, headers);
-        response.end(JSON.stringify(functionResponse));
-      } else {
-        response.writeHead(302, {
-          Location: functionResponse.redirect
-          //add other headers here...
-        });
-        response.end();
-      }
+  if (functions[functionName]) {
+    let functionResponse = await functions[functionName](functionParams);
+    if (!functionResponse.redirect) {
+      response.writeHead(functionResponse.status, headers);
+      response.end(JSON.stringify(functionResponse));
     } else {
-      console.log('function: "', functionName, '" not found.');
-      response.writeHead(404, headers);
-      response.end(
-        JSON.stringify({
-          status: 404,
-          message: "function not found!"
-        })
-      );
+      response.writeHead(302, {
+        Location: functionResponse.redirect
+        //add other headers here...
+      });
+      response.end();
     }
+  } else {
+    console.log('function: "', functionName, '" not found.');
+    response.writeHead(404, headers);
+    response.end(
+      JSON.stringify({
+        status: 404,
+        message: "function not found!"
+      })
+    );
   }
 }
 console.log("Server has started and listening on : " + HOST + ":" + PORT);

@@ -11,9 +11,9 @@ const FRAMEWORK_ENV_PATH = path.join(
   );
   require("dotenv").config({ path: FRAMEWORK_ENV_PATH });
 
-{{#constDeclarations}} 
-{{{.}}} 
-{{/constDeclarations}}
+const GOOGLE_PROJECT_NAME = process.env.GOOGLE_PROJECT_NAME; 
+const WEB3_PROVIDER_URL = process.env.WEB3_PROVIDER_URL; 
+const TRANSMUTE_API_ROOT = process.env.TRANSMUTE_API_ROOT; 
 
 admin.initializeApp({
   credential: admin.credential.cert(
@@ -33,7 +33,7 @@ let transmuteConfig = {
 module.exports = {
   TransmuteFramework,
   transmuteConfig,
-  {{#constExports}} 
-  {{{.}}},
-  {{/constExports}}
+  GOOGLE_PROJECT_NAME,
+  WEB3_PROVIDER_URL,
+  TRANSMUTE_API_ROOT,
 };

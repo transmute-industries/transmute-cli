@@ -3,38 +3,25 @@ const querystring = require("querystring");
 const url = require("url");
 const cors = require("cors")({ origin: true });
 const user_functions = require("./src");
-const env = require("./environment.node");
+const _ = require("lodash");
 
-exports.echo = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    user_functions["echo"]({
-      name: "echo",
-      query: querystring.parse(url.parse(req.url).query),
-      body: req.body,
-      env
-    }).then(response => {
-      if (!response.redirect) {
-        res.status(response.status).json(response);
-      } else {
-        res.redirect(response.redirect);
-      }
-    });
-  });
-});
-
-exports.token = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    user_functions["token"]({
-      name: "token",
-      query: querystring.parse(url.parse(req.url).query),
-      body: req.body,
-      env
-    }).then(response => {
-      if (!response.redirect) {
-        res.status(response.status).json(response);
-      } else {
-        res.redirect(response.redirect);
-      }
+// wire up all user functions... 
+_.forEach(_.keys(user_functions), name => {
+  exports[name] = functions.https.onRequest((req, res) => {
+    cors(req, res, () => {
+      return user_functions
+        [name]({
+          name: name,
+          query: querystring.parse(url.parse(req.url).query),
+          body: req.body
+        })
+        .then(response => {
+          if (!response.redirect) {
+            res.status(response.status).json(response);
+          } else {
+            res.redirect(response.redirect);
+          }
+        });
     });
   });
 });

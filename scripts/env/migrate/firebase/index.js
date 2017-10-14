@@ -12,7 +12,7 @@ module.exports = (args, callback) => {
     lines.forEach(line => {
       if (line) {
         let [key, value] = line.split("=");
-        result += `${prefix}.${key.toLowerCase()}='${value}' `;
+        result += `${prefix}.${key.toLowerCase()}=${value} `;
       }
     });
     if (shell.exec(result).code !== 0) {

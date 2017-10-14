@@ -62,7 +62,7 @@ vorpal.use(vorpalTour, {
     tour
       .step(2)
       .begin(
-        'Make sure ~/.tranmsute/environment.secret.env is correct BEFORE PROCEEDING. Run "init ."'
+        'Make sure ~/.transmute/environment.secret.env is correct BEFORE PROCEEDING. Run "init ."'
       )
       .expect("command", (data, cb) => {
         cb(data.command === "init .");

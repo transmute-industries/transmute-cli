@@ -48,92 +48,91 @@ module.exports = vorpal => {
   vorpal
     .command("setup", "build.....")
     .option("-r, --reset", "reset transmute framework.")
+    .option("-f, --from <secretPath>", "a .transmute directory to reset from.")
     .action(async (args, callback) => {
       if (args.options.reset) {
         await destroyRCDir();
       }
 
-      if (!args.options.reset) {
-        await getOrCreateRCDir();
+      let fromSecretPath =
+        args.options.from || "/Users/orie/Code/secrets/.transmute";
 
-        // console.log(require("../env/generate/js-web"));
-        let cmd, secretEnvPath;
-        //OVERWRITE WITH REAL SECRETS
-        try {
-          secretEnvPath = path.join(
-            os.homedir(),
-            ".transmute",
-            "environment.secret.env"
-          );
-          cmd = `cp /Users/orie/Code/secrets/environment.secret.env ${secretEnvPath}`;
-          if (shell.exec(cmd).code !== 0) {
-            vorpal.logger.fatal("Error: failed command: " + cmd);
-            shell.exit(1);
-          }
-          vorpal.logger.info("Setup secrets have been overwritten!");
-        } catch (e) {
-          vorpal.logger.warn("Be sure to update: secretEnvPath");
+      await getOrCreateRCDir();
+
+      // console.log(require("../env/generate/js-web"));
+      let cmd, secretEnvPath;
+      //OVERWRITE WITH REAL SECRETS
+      try {
+        secretEnvPath = path.join(os.homedir(), ".transmute");
+        cmd = `cp -R ${fromSecretPath}/* ${secretEnvPath}`;
+        if (shell.exec(cmd).code !== 0) {
+          vorpal.logger.fatal("Error: failed command: " + cmd);
+          shell.exit(1);
         }
-
-        vorpal.logger.info(`cat ${secretEnvPath}`);
-
-        let prefix = "dapp";
-
-        let secretEnvPathAbs = path.join(
-          os.homedir(),
-          ".transmute",
-          "environment.secret.env"
-        );
-
-        let firebaseJsonConfigAbsPath = path.join(
-          os.homedir(),
-          ".transmute",
-          "firebaseConfig.json"
-        );
-
-        let environmentWebAbsPath = path.join(
-          os.homedir(),
-          ".transmute",
-          "environment.web"
-        );
-
-        let environmentNodeAbsPath = path.join(
-          os.homedir(),
-          ".transmute",
-          "environment.node"
-        );
-
-        let langs = ["ts", "js"];
-
-        await Promise.all(
-          langs.map(async lang => {
-            await require(`../env/generate/${lang}-web`)(
-              {
-                firebaseConfigPath: firebaseJsonConfigAbsPath,
-                outputEnvPath: environmentWebAbsPath + `.${lang}`
-              },
-              () => {
-                vorpal.logger.log(
-                  `transmute gen-web ${lang} ${firebaseJsonConfigAbsPath} ${environmentWebAbsPath}.${lang}`
-                );
-              }
-            );
-
-            return await require(`../env/generate/${lang}-node`)(
-              {
-                prefix: prefix,
-                secretEnvPath: secretEnvPathAbs,
-                outputEnvPath: environmentNodeAbsPath + `.${lang}`
-              },
-              () => {
-                vorpal.logger.log(
-                  `transmute gen-node ${lang} ${prefix} ${secretEnvPathAbs} ${environmentNodeAbsPath}.${lang}`
-                );
-              }
-            );
-          })
-        );
+        vorpal.logger.info("Setup secrets have been overwritten!");
+      } catch (e) {
+        vorpal.logger.warn("Be sure to update: secretEnvPath");
       }
+
+      vorpal.logger.info(`cat ${secretEnvPath}`);
+
+      let prefix = "dapp";
+
+      let secretEnvPathAbs = path.join(
+        os.homedir(),
+        ".transmute",
+        "environment.secret.env"
+      );
+
+      let firebaseJsonConfigAbsPath = path.join(
+        os.homedir(),
+        ".transmute",
+        "firebase-client-config.json"
+      );
+
+      let environmentWebAbsPath = path.join(
+        os.homedir(),
+        ".transmute",
+        "environment.web"
+      );
+
+      let environmentNodeAbsPath = path.join(
+        os.homedir(),
+        ".transmute",
+        "environment.node"
+      );
+
+      let langs = [ "js"];
+
+      await Promise.all(
+        langs.map(async lang => {
+          await require(`../env/generate/${lang}-web`)(
+            {
+              firebaseConfigPath: firebaseJsonConfigAbsPath,
+              outputEnvPath: environmentWebAbsPath + `.${lang}`
+            },
+            () => {
+              vorpal.logger.log(
+                `transmute gen-web ${lang} ${firebaseJsonConfigAbsPath} ${environmentWebAbsPath}.${lang}`
+              );
+            }
+          );
+
+          return await require(`../env/generate/${lang}-node`)(
+            {
+              prefix: prefix,
+              secretEnvPath: secretEnvPathAbs,
+              outputEnvPath: environmentNodeAbsPath + `.${lang}`
+            },
+            () => {
+              vorpal.logger.log(
+                `transmute gen-node ${lang} ${prefix} ${secretEnvPathAbs} ${environmentNodeAbsPath}.${lang}`
+              );
+            }
+          );
+        })
+      );
+
       callback();
     });
 

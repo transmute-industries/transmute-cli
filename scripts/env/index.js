@@ -17,8 +17,8 @@ module.exports = vorpal => {
       switch (args.lang) {
         case "js":
           return require("./generate/js-web")(args, callback);
-        case "ts":
-          return require("./generate/ts-web")(args, callback);
+        // case "ts":
+        //   return require("./generate/ts-web")(args, callback);
       }
     });
 
@@ -28,12 +28,12 @@ module.exports = vorpal => {
       "build....."
     )
     .action((args, callback) => {
-      console.log(args)
+      // console.log(args)
       switch (args.lang) {
         case "js":
           return require("./generate/js-node")(args, callback);
-        case "ts":
-          return require("./generate/ts-node")(args, callback);
+        // case "ts":
+        //   return require("./generate/ts-node")(args, callback);
       }
     });
 

@@ -1,8 +1,10 @@
-const T = require("transmute-framework").default.init();
-const moment = require("moment");
-const uuidv4 = require("uuid/v4");
+const { TransmuteFramework, transmuteConfig } = require("../../../.transmute/environment.node");
+TransmuteFramework.init(transmuteConfig);
+const T = TransmuteFramework;
+
+
 const _ = require("lodash");
-const TokenChallengeStore = require("./TokenChallengeStore");
+const TokenChallengeStore = require("../TokenChallengeStore");
 
 const confirmAddressSignedMessage = (address, message, signature) => {
   return T.Toolbox.recover(message, signature).then(recoveredAddress => {
@@ -10,66 +12,7 @@ const confirmAddressSignedMessage = (address, message, signature) => {
   });
 };
 
-const generateChallengeObjectForAddressToSign = (
-  tcs,
-  client_address,
-  client_message_raw
-) => {
-  // SIGN THIS TO PROVE YOU CONTROL ADDRESS
-  const timestamp = moment().unix();
-  const uuid = uuidv4();
-  const message_raw = `${uuid}.${client_address}.${client_message_raw}`;
-  let function_address
-  return T.getAccounts()
-    .then(addresses => {
-      function_address = addresses[1]
-      return function_address;
-    })
-    .then(function_address => {
-      return T.Toolbox.sign(function_address, message_raw);
-    })
-    .then(signatureObject => {
-      const tokenChallengeObject = {
-        client_address,
-        client_message_raw,
-        function_address,
-        timestamp,
-        uuid,
-        message_raw,
-        message_hex: signatureObject.messageBufferHex,
-        message_signature: signatureObject.signature,
-        token_issued: false
-      };
-      return tcs.set(tokenChallengeObject);
-    });
-};
-
-const challengeClientToSignMessage = functionParams => {
-  const { message_raw, message_signature, address } = functionParams.query;
-  let didClientAddressSignMessageRaw, tcs;
-  tcs = new TokenChallengeStore(functionParams.env.TransmuteFramework.db);
-
-  return confirmAddressSignedMessage(address, message_raw, message_signature)
-    .then(_didClientAddressSignMessageRaw => {
-      didClientAddressSignMessageRaw = _didClientAddressSignMessageRaw;
-      return generateChallengeObjectForAddressToSign(tcs, address, message_raw);
-    })
-    .then(challengeObject => {
-      return {
-        status: 200,
-        body: {
-          // callingArgs: _.omit(functionParams, "db", "admin"),
-          conditions: {
-            didClientAddressSignMessageRaw
-          },
-          challenge: challengeObject.message_raw
-        },
-        redirect: null
-      };
-    });
-};
-
-const verifyClientHasSignedMessage = functionParams => {
+module.exports = functionParams => {
   const {
     address,
     message_raw,
@@ -77,7 +20,7 @@ const verifyClientHasSignedMessage = functionParams => {
     message_signature
   } = functionParams.query;
 
-  const tcs = new TokenChallengeStore(functionParams.env.TransmuteFramework.db);
+  const tcs = new TokenChallengeStore(TransmuteFramework.db);
   let clientAddressHasStoredChallenge,
     clientMessageRawIsStoredChallengeMessageHex,
     functionAddressHasSignedStoredChallengeMessageHex,
@@ -88,7 +31,7 @@ const verifyClientHasSignedMessage = functionParams => {
   return tcs
     .get(address)
     .then(_storedChallange => {
-      storedChallange = _storedChallange
+      storedChallange = _storedChallange;
       // Address has stored challange
       clientAddressHasStoredChallenge =
         storedChallange.client_address === address;
@@ -105,7 +48,7 @@ const verifyClientHasSignedMessage = functionParams => {
       );
     })
     .then(_functionAddressHasSignedStoredChallengeMessageHex => {
-      functionAddressHasSignedStoredChallengeMessageHex = _functionAddressHasSignedStoredChallengeMessageHex
+      functionAddressHasSignedStoredChallengeMessageHex = _functionAddressHasSignedStoredChallengeMessageHex;
       // Client and server must sign with different addresses.
       functionAddressIsNotClientAddress =
         storedChallange.function_address !== address;
@@ -140,7 +83,10 @@ const verifyClientHasSignedMessage = functionParams => {
         storedChallange.token_issued = true;
 
         return tcs.set(storedChallange).then(updatedStoredChallange => {
-          return functionParams.env.TransmuteFramework.firebaseAdmin
+
+          // https://stackoverflow.com/questions/42717540/firebase-cloud-functions-createcustomtoken
+          
+          return T.firebaseAdmin
             .auth()
             .createCustomToken(address, conditions)
             .then(customToken => {
@@ -164,9 +110,4 @@ const verifyClientHasSignedMessage = functionParams => {
         };
       }
     });
-};
-
-module.exports = {
-  challengeClientToSignMessage,
-  verifyClientHasSignedMessage
 };

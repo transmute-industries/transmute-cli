@@ -7,7 +7,7 @@ let transmuteConfig = {
   aca: require("transmute-framework/build/contracts/RBAC.json"),
   esa: require("transmute-framework/build/contracts/RBACEventStore.json"),
   esfa: require("transmute-framework/build/contracts/RBACEventStoreFactory.json"),
-  TRANSMUTE_API_ROOT: 'http://localhost:3001',
+  TRANSMUTE_API_ROOT: 'http://functions.transmute.industries',
   firebaseApp: firebase.initializeApp({
     apiKey: "AIzaSyAz5HkV4suTR49_1Cj40bQYd9Jgiv634qQ",
     authDomain: "transmute-framework.firebaseapp.com",

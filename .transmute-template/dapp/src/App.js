@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import { TransmuteFramework as T } from "./environment.web";
+import { TransmuteFramework, transmuteConfig } from "./environment.web";
+
+const T = TransmuteFramework.init(transmuteConfig); 
 
 console.log(T);
 
