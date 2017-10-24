@@ -1,13 +1,13 @@
 node_modules
 
 
-/coverage 
+coverage
 
-/umd 
-/lib
-/lib-esm 
-/lib-fesm 
-/typings 
+umd
+lib
+lib-esm
+lib-fesm
+typings
 
 environment.secret.env
 
