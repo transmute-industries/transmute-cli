@@ -17,38 +17,35 @@ If you are brand new, you will need to setup some files, after running:
 transmute setup
 ```
 
-### Setup from Local .transmute
+If you have configs stored somwhere, you can use them like this:
+
 ```sh
 transmute setup --from ~/Code/secrets/.transmute/
-mkdir smoke && cd smoke
-transmute init .
-cd dapp
-yarn install
 ```
 
-#### Serve Functions Locally
-```sh
-transmute serve
-```
+## Usage
 
-#### Start App 
-```sh
-yarn start
-```
+### Basic
 
-#### Security Rules
-
-Use firestore.rules to restrict access to everything stored by the framework.
+Just a front end app, using transmute hosted services (this repo).
 
 ```
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if request.auth != null;
-    }
-  }
-}
+transmute init --basic .
 ```
+
+This will create a new dapp, which is configured to use transmute industries hosted functions, ethereum and ipfs. This app provides a pure front end development experience for users who do not wish to configure functions, ethereum or ipfs, but who do wish to develop against hosted version of these services.
+
+
+### Advanced
+
+Dockerized app, api, ipfs and ethereum, fully configurable boilerplate.
+
+```
+transmute init --advanced .
+```
+
+This will create a new dapp, which contains these functions, as well as docker configurations for ethereum, ipfs and a demo web app. This boilerplate is meant to be a starting point for developers, not all of these services may be desired.
+
 
 #### Dev Commands 
 ``` 
