@@ -116,7 +116,7 @@ module.exports = vorpal => {
             },
             () => {
               vorpal.logger.log(
-                `transmute gen-web ${lang} ${firebaseJsonConfigAbsPath} ${environmentWebAbsPath}.${lang}`
+                `transmute gen-web ${lang} ${environmentWebAbsPath}.${lang}`
               );
             }
           );

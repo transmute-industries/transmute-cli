@@ -8,43 +8,8 @@ const path = require("path");
 // https://github.com/vorpaljs/vorpal-tour/
 // https://github.com/AljoschaMeyer/vorpal-log/
 
-// let webEnv
-// try {
-//   webEnv = require(path.join(process.cwd(), "environment.web"));
-// } catch (e) {
-//   // throw e;
-// }
-// try {
-//   webEnv = require(path.join(process.cwd(), "src", "environment.web"));
-// } catch (e) {
-//   // throw e;
-// }
-
-// if (!webEnv) {
-//   console.error(`Could not require transmute framework from: ./environment.web.js or ./src/environment.web.js`);
-//   console.log(`Have you run 'cp ~/.transmute/environment.web.js .' or 'transmute init'  ?`);
-// } else {
- 
-//   let T = webEnv.TransmuteFramework;
-//   // console.log(T)
-//   vorpal.T = T;
-// }
-
-
 vorpal.use(vorpalLog);
 
-try{
-  // const { TransmuteFramework, transmuteConfig } = require(path.join(
-  //   process.cwd(),
-  //   "./functions/.transmute/environment.web"
-  // ));
-
-
-  // vorpal.T = TransmuteFramework.init(transmuteConfig); 
-} catch(e) {
-  vorpal.logger.warn('No ./functions/.transmute/environment.web was detected.')
-  vorpal.logger.info('TransmuteFramework and Firebase CLI features may not all be operational.')
-}
 
 vorpal.use(vorpalTour, {
   command: "tour",
@@ -83,7 +48,9 @@ vorpal.use(vorpalTour, {
       })
       .reject('Uh.. Let\'s type "init ." instead..')
       .wait(500)
-      .end("Great! You now have a sample dapp to play with. See the dapp README.md for the next steps!");
+      .end(
+        "Great! You now have a sample dapp to play with. See the dapp README.md for the next steps!"
+      );
 
     // A delay in millis between steps.
     tour.wait(1000);

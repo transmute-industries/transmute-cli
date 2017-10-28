@@ -1,6 +1,44 @@
 const path = require("path");
+const os = require('os')
+const firebase = require("firebase");
+require("firebase/firestore");
+
+let TransmuteFramework = require("transmute-framework").default;
+let contractArtifacts = {
+  aca: require("transmute-framework/build/contracts/RBAC.json"),
+  esa: require("transmute-framework/build/contracts/RBACEventStore.json"),
+  esfa: require("transmute-framework/build/contracts/RBACEventStoreFactory.json")
+};
 
 module.exports = vorpal => {
+  try {
+    // const { TransmuteFramework, transmuteConfig } = require(path.join(
+    //   process.cwd(),
+    //   "./functions/.transmute/environment.web"
+    // ));
+    // vorpal.T = TransmuteFramework.init(transmuteConfig);
+    throw "configuration has changed...";
+  } catch (e) {
+    vorpal.logger.warn(
+      "No ./functions/.transmute/environment.web was detected."
+    );
+    vorpal.logger.info("Using ~/.transmute for env.");
+    const { transmuteProductionConfig } = require(path.join(
+      os.homedir(),
+      ".transmute/environment.web"
+    ));
+    const firebaseApp = firebase.initializeApp(
+      require(path.join(os.homedir(), ".transmute/firebase-client-config.json"))
+    );
+    const injectedConfig = Object.assign(
+      transmuteProductionConfig,
+      {
+        firebaseApp
+      },
+      contractArtifacts
+    );
+    vorpal.T = TransmuteFramework.init(injectedConfig);
+  }
 
   vorpal.logger.log("👑  Transmute ");
 

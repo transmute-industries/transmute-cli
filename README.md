@@ -75,7 +75,7 @@ $ yarn transmute unpatch
 #### JavaScript 
 ```
 $ yarn transmute gen-node js dapp ../secrets/environment.secret.env ./environment.node.js
-$ yarn transmute gen-web js ../secrets/firebase-client-config.json ./environment.web.js
+$ yarn transmute gen-web js ./environment.web.js
 ```
 
 #### Misc

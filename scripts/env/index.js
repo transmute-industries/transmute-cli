@@ -10,7 +10,7 @@ module.exports = vorpal => {
 
   vorpal
     .command(
-      "gen-web [lang] [firebaseConfigPath] [outputEnvPath]",
+      "gen-web [lang] [outputEnvPath]",
       "build....."
     )
     .action((args, callback) => {
