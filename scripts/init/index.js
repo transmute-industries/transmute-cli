@@ -12,23 +12,40 @@ const COMMAND_BASE = USE_YARN ? "yarn transmute" : "transmute";
 module.exports = vorpal => {
   vorpal
     .command("init [path]", "clone a seed project.")
+    .option(
+      "-b, --basic",
+      "Just a front end app, using transmute hosted services."
+    )
+    .option(
+      "-a, --advanced",
+      "Dockerized app, api, ipfs and ethereum, fully configurable boilerplate."
+    )
     .action(async (args, callback) => {
-      let repo = "https://github.com/transmute-industries/transmute-dapp.git";
+      // console.log("use args to build basic and advanced dapps...");
+      // console.log(args);
 
       const targetPath = args.path
         ? path.join(process.cwd(), args.path)
         : path.join(process.cwd());
 
-      console.log("git clone into ", targetPath);
-      cmd = `
-    cd ${targetPath};
-    git clone ${repo}
-    `;
-      if (shell.exec(cmd).code !== 0) {
-        vorpal.logger.fatal("Error: failed command: " + cmd);
-        shell.exit(1);
+      if (args.options.basic) {
+        let repo = "https://github.com/transmute-industries/transmute-dapp.git";
+
+        console.log("git clone into ", targetPath);
+        cmd = `
+        cd ${targetPath};
+        git clone ${repo};
+        cd transmute-dapp; 
+        rm -rf .git;
+        `;
+        if (shell.exec(cmd).code !== 0) {
+          vorpal.logger.fatal("Error: failed command: " + cmd);
+          shell.exit(1);
+        }
       }
 
+      vorpal.logger.info(`Star the dapp!`)
+      vorpal.logger.info(`cd ${path.join(targetPath, 'transmute-dapp')} && yarn install && yarn start`)
       callback();
     });
 
