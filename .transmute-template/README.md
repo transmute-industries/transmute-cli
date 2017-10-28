@@ -29,18 +29,6 @@ This is a dotenv file for storing secrets and it SHOULD NEVER BE PUBLISHED.
 
 If you accidentally publish this file, review your secrets and revoke or replace them wherever possible.
 
-### dapp
-
-This folder contains a create react app with Transmute Framework. It is the template used for:
-
-```
-transmute init .
-```
-
-This command create a new dapp with cloud functions and transmute framework in a directory. 
-
-See its readme for more. 
-
 ### Developing .transmute
 
 You'll need to rebuild .transmute from some stored secret directory often when testing configuration changes.
