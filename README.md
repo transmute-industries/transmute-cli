@@ -14,12 +14,12 @@ $ yarn global add transmute-cli@latest
 If you are brand new, you will need to setup some files, after running:
 
 ```
-transmute setup --reset
+transmute setup
 ```
 
 ### Setup from Local .transmute
 ```sh
-transmute setup --reset --from ~/Code/secrets/.transmute/
+transmute setup --from ~/Code/secrets/.transmute/
 mkdir smoke && cd smoke
 transmute init .
 cd dapp

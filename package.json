@@ -57,7 +57,7 @@
     "release:preflight": "irish-pub",
     "release:preflight:package": "npm pack",
     "size": "shx echo \"Gzipped Size:\" && cross-var strip-json-comments --no-whitespace $npm_package_main | gzip-size",
-    "smoke-rebuild": "yarn transmute setup --reset --from ~/Code/secrets/.transmute/ && rm -rf ../smoke/dapp/ && yarn transmute init ../smoke/"
+    "smoke-rebuild": "yarn transmute setup --from ~/Code/secrets/.transmute/ && rm -rf ../smoke/dapp/ && yarn transmute init ../smoke/"
   },
   "config": {
     "commitizen": {

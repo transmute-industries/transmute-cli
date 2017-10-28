@@ -4,6 +4,7 @@ const path = require("path");
 
 const replace = require("replace-in-file");
 
+// THIS IS BROKEN...
 module.exports = vorpal => {
   vorpal
     .command(

@@ -11,35 +11,28 @@ const COMMAND_BASE = USE_YARN ? "yarn transmute" : "transmute";
 
 module.exports = vorpal => {
   const getOrCreateRCDir = async () => {
-    try {
-      const rc_path = path.join(os.homedir(), ".transmute");
-      let data = await fs.readdirAsync(rc_path);
-      vorpal.logger.log(".transmute detected! Aborting setup.");
-      vorpal.logger.info("transmute setup --reset");
-    } catch (e) {
-      let cmd = "mkdir ~/.transmute";
-      vorpal.logger.log(cmd);
-      if (shell.exec(cmd).code !== 0) {
-        vorpal.logger.fatal("Error: failed command: " + cmd);
-        shell.exit(1);
-      }
+    let cmd = "mkdir ~/.transmute";
+    vorpal.logger.log(cmd);
+    if (shell.exec(cmd).code !== 0) {
+      vorpal.logger.fatal("Error: failed command: " + cmd);
+      shell.exit(1);
+    }
 
-      // Copy move .transmute-template to ~/.transmute
-      let template_dir = path.join(__dirname, "../../.transmute-template/*");
-      cmd = `cp -r ${template_dir} ~/.transmute/`;
-      vorpal.logger.log(cmd);
-      if (shell.exec(cmd).code !== 0) {
-        vorpal.logger.fatal("Error: failed command: " + cmd);
-        shell.exit(1);
-      }
+    // Copy move .transmute-template to ~/.transmute
+    let template_dir = path.join(__dirname, "../../.transmute-template/*");
+    cmd = `cp -r ${template_dir} ~/.transmute/`;
+    vorpal.logger.log(cmd);
+    if (shell.exec(cmd).code !== 0) {
+      vorpal.logger.fatal("Error: failed command: " + cmd);
+      shell.exit(1);
+    }
 
-      // Rename example env to secret env.
-      cmd = `mv ~/.transmute/environment.example.env ~/.transmute/environment.secret.env`;
-      vorpal.logger.log(cmd);
-      if (shell.exec(cmd).code !== 0) {
-        vorpal.logger.fatal("Error: failed command: " + cmd);
-        shell.exit(1);
-      }
+    // Rename example env to secret env.
+    cmd = `mv ~/.transmute/environment.example.env ~/.transmute/environment.secret.env`;
+    vorpal.logger.log(cmd);
+    if (shell.exec(cmd).code !== 0) {
+      vorpal.logger.fatal("Error: failed command: " + cmd);
+      shell.exit(1);
     }
   };
 
@@ -62,7 +55,6 @@ module.exports = vorpal => {
     .command("setup", "build.....")
     .option("-f, --from <secretPath>", "a .transmute directory to reset from.")
     .action(async (args, callback) => {
-
       await destroyRCDir();
 
       let fromSecretPath = args.options.from;

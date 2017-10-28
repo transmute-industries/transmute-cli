@@ -34,7 +34,7 @@ If you accidentally publish this file, review your secrets and revoke or replace
 You'll need to rebuild .transmute from some stored secret directory often when testing configuration changes.
 
 ```
-yarn transmute setup --reset --from ~/Code/secrets/.transmute/
+yarn transmute setup --from ~/Code/secrets/.transmute/
 ```
 
 ### Testing apps that use .transmute
@@ -48,7 +48,7 @@ rm -rf ../smoke/dapp/ && yarn transmute init ../smoke/
 ### Full dapp rebuild after environments setup
 
 ```
-yarn transmute setup --reset --from ~/Code/secrets/.transmute/ && rm -rf ../smoke/dapp/ && yarn transmute init ../smoke/
+yarn transmute setup --from ~/Code/secrets/.transmute/ && rm -rf ../smoke/dapp/ && yarn transmute init ../smoke/
 ```
 
 
@@ -58,7 +58,6 @@ yarn transmute setup --reset --from ~/Code/secrets/.transmute/ && rm -rf ../smok
 yarn add global transmute-cli@latest
 
 rm -rf ./dapp
-transmute setup --reset
 transmute setup 
 transmute init .
 
