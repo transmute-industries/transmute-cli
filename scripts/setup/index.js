@@ -60,12 +60,10 @@ module.exports = vorpal => {
 
   vorpal
     .command("setup", "build.....")
-    .option("-r, --reset", "reset transmute framework.")
     .option("-f, --from <secretPath>", "a .transmute directory to reset from.")
     .action(async (args, callback) => {
-      if (args.options.reset) {
-        await destroyRCDir();
-      }
+
+      await destroyRCDir();
 
       let fromSecretPath = args.options.from;
 
