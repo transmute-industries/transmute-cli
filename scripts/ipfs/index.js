@@ -1,11 +1,9 @@
 const path = require("path");
-
-const T = require("transmute-framework").default.init();
-let { getCachedReadModel } = T.EventStore;
-
 const _ = require("lodash");
 
 module.exports = vorpal => {
+  let T = vorpal.T;
+  
   const transmuteIpfsDeploy = async bindingModel => {
     let ti;
     if (bindingModel.env === "infura") {

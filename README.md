@@ -78,12 +78,6 @@ $ yarn transmute gen-node js dapp ../secrets/environment.secret.env ./environmen
 $ yarn transmute gen-web js ../secrets/firebase-client-config.json ./environment.web.js
 ```
 
-#### TypeScript 
-```
-$ yarn transmute gen-node ts dapp ../secrets/environment.secret.env ./environment.node.ts
-$ yarn transmute gen-web ts ../secrets/firebase-client-config.json ./environment.web.ts
-```
-
 #### Misc
 ```
 $ yarn transmute gen-mask ./environment.secret.env ./environment.example.env 

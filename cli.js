@@ -34,13 +34,16 @@ const path = require("path");
 vorpal.use(vorpalLog);
 
 try{
-  const { TransmuteFramework, transmuteConfig } = require(path.join(
-    process.cwd(),
-    "./functions/.transmute/environment.web"
-  ));
-  vorpal.T = TransmuteFramework.init(transmuteConfig); 
+  // const { TransmuteFramework, transmuteConfig } = require(path.join(
+  //   process.cwd(),
+  //   "./functions/.transmute/environment.web"
+  // ));
+
+
+  // vorpal.T = TransmuteFramework.init(transmuteConfig); 
 } catch(e) {
-  vorpal.logger.warn('No ./functions/.transmute/environment.web was detected. Firebase CLI will not function.')
+  vorpal.logger.warn('No ./functions/.transmute/environment.web was detected.')
+  vorpal.logger.info('TransmuteFramework and Firebase CLI features may not all be operational.')
 }
 
 vorpal.use(vorpalTour, {

@@ -44,11 +44,6 @@ module.exports = vorpal => {
       // in the future, the cli will be able login and then use firestore...
       // this will be handy for data exporting, migrating, rebuilding etc...
 
-      const { TransmuteFramework, transmuteConfig } = require(path.join(
-        process.cwd(),
-        "./functions/.transmute/environment.node"
-      ));
-      vorpal.T = TransmuteFramework.init(transmuteConfig);
 
       await vorpal.T.db
         .collection("token_challenges")

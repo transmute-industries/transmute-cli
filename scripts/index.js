@@ -1,7 +1,9 @@
 const path = require("path");
 
 module.exports = vorpal => {
+
   vorpal.logger.log("👑  Transmute ");
+
   vorpal
     .command("version", "display version information")
     .action((args, callback) => {
