@@ -42,10 +42,47 @@ module.exports = vorpal => {
           vorpal.logger.fatal("Error: failed command: " + cmd);
           shell.exit(1);
         }
+
+        vorpal.logger.info(`Star the dapp!`);
+        vorpal.logger.info(
+          `cd ${path.join(
+            targetPath,
+            "transmute-dapp"
+          )} && yarn install && yarn start`
+        );
       }
 
-      vorpal.logger.info(`Star the dapp!`)
-      vorpal.logger.info(`cd ${path.join(targetPath, 'transmute-dapp')} && yarn install && yarn start`)
+      if (args.options.advanced) {
+        let repo = "https://github.com/transmute-industries/transmute-dapp.git";
+
+        console.log("git clone into ", targetPath);
+        cmd = `
+                cd ${targetPath};
+                git clone -b advanced ${repo};
+                cd transmute-dapp; 
+                rm -rf .git;
+                `;
+        if (shell.exec(cmd).code !== 0) {
+          vorpal.logger.fatal("Error: failed command: " + cmd);
+          shell.exit(1);
+        }
+
+        vorpal.logger.info(`Star the dapp!`);
+        vorpal.logger.info(`cd ${path.join(targetPath, "transmute-dapp")}`);
+        vorpal.logger.info(
+          `Add your service account json to functions/.transmute/firebase-service-account.json`
+        );
+        vorpal.logger.info(
+          `See ${path.join(
+            targetPath,
+            "transmute-dapp",
+            "README.md"
+          )} for full instructions.`
+        );
+
+        vorpal.logger.info(`docker-compose up`);
+      }
+
       callback();
     });
 
