@@ -35,6 +35,7 @@
   "scripts": {
     "transmute": "node cli.js",
     "fuck": "yarn cleanup && yarn build && git add -A && git commit -m ':rocket:' --no-verify && npm version patch && npm publish && yarn global add transmute-cli@latest",
+    "publish-install-latest": "npm version patch && npm publish && yarn global add transmute-cli@latest",
     "cleanup": "shx rm -rf umd lib lib-esm lib-fesm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
     "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack && webpack --env.prod",
