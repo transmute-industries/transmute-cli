@@ -1,5 +1,5 @@
 const path = require("path");
-const os = require('os')
+const os = require("os");
 const firebase = require("firebase");
 require("firebase/firestore");
 
@@ -22,22 +22,31 @@ module.exports = vorpal => {
     vorpal.logger.warn(
       "No ./functions/.transmute/environment.web was detected."
     );
-    vorpal.logger.info("Using ~/.transmute for env.");
-    const { transmuteProductionConfig } = require(path.join(
-      os.homedir(),
-      ".transmute/environment.web"
-    ));
-    const firebaseApp = firebase.initializeApp(
-      require(path.join(os.homedir(), ".transmute/firebase-client-config.json"))
-    );
-    const injectedConfig = Object.assign(
-      transmuteProductionConfig,
-      {
-        firebaseApp
-      },
-      contractArtifacts
-    );
-    vorpal.T = TransmuteFramework.init(injectedConfig);
+
+    try {
+      const { transmuteProductionConfig } = require(path.join(
+        os.homedir(),
+        ".transmute/environment.web"
+      ));
+      const firebaseApp = firebase.initializeApp(
+        require(path.join(
+          os.homedir(),
+          ".transmute/firebase-client-config.json"
+        ))
+      );
+      const injectedConfig = Object.assign(
+        transmuteProductionConfig,
+        {
+          firebaseApp
+        },
+        contractArtifacts
+      );
+      vorpal.T = TransmuteFramework.init(injectedConfig);
+      vorpal.logger.info("Using ~/.transmute for env.");
+    } catch (e) {
+      vorpal.logger.warn(  "No ~/.transmute found. Please run:");
+      vorpal.logger.info("transmute setup");
+    }
   }
 
   vorpal.logger.log("👑  Transmute ");
@@ -46,7 +55,7 @@ module.exports = vorpal => {
     .command("version", "display version information")
     .action((args, callback) => {
       console.log("Transmute CLI: " + require("../package.json").version);
-      console.log("Transmute Framework: " + vorpal.T.version);
+      console.log("Transmute Framework: " + TransmuteFramework.version);
       callback();
     });
 
