@@ -96,7 +96,7 @@ module.exports = vorpal => {
       let environmentWebAbsPath = path.join(
         os.homedir(),
         ".transmute",
-        "environment.web"
+        "environment.web.js"
       );
 
       let environmentNodeAbsPath = path.join(
