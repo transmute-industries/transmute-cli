@@ -75,11 +75,24 @@ module.exports = vorpal => {
           shell.exit(1);
         }
 
+        try {
+          fromSecretPath = path.join(os.homedir(), ".transmute");
+          cmd = `
+                  cd transmute-dapp;
+                  cp -R ${fromSecretPath}/* functions/.transmute/
+                  `;
+          if (shell.exec(cmd).code !== 0) {
+            vorpal.logger.fatal("Error: failed command: " + cmd);
+            shell.exit(1);
+          }
+          vorpal.logger.info("Project secrets have been overwritten!");
+        } catch (e) {
+          vorpal.logger.warn("No ~/.transmute directory...");
+          vorpal.logger.info("Please run `transmute setup` and follow the instructions in the README to update this directory with your firebase app information.");
+        }
+
         vorpal.logger.info(`Star the dapp!`);
         vorpal.logger.info(`cd ${path.join(targetPath, "transmute-dapp")}`);
-        vorpal.logger.info(
-          `Add your service account json to functions/.transmute/firebase-service-account.json`
-        );
         vorpal.logger.info(
           `See ${path.join(
             targetPath,
