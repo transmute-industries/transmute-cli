@@ -77,64 +77,64 @@ module.exports = vorpal => {
         }
 
         vorpal.logger.info(`cat ${secretEnvPath}`);
+      } else {
+        let prefix = "dapp";
+
+        let secretEnvPathAbs = path.join(
+          os.homedir(),
+          ".transmute",
+          "environment.secret.env"
+        );
+
+        let firebaseJsonConfigAbsPath = path.join(
+          os.homedir(),
+          ".transmute",
+          "firebase-client-config.json"
+        );
+
+        let environmentWebAbsPath = path.join(
+          os.homedir(),
+          ".transmute",
+          "environment.web"
+        );
+
+        let environmentNodeAbsPath = path.join(
+          os.homedir(),
+          ".transmute",
+          "environment.node"
+        );
+
+        let langs = ["js"];
+
+        await Promise.all(
+          langs.map(async lang => {
+            await require(`../env/generate/${lang}-web`)(
+              {
+                firebaseConfigPath: firebaseJsonConfigAbsPath,
+                outputEnvPath: `${environmentWebAbsPath}.${lang}`
+              },
+              () => {
+                vorpal.logger.log(
+                  `transmute gen-web ${lang} ${environmentWebAbsPath}.${lang}`
+                );
+              }
+            );
+
+            return await require(`../env/generate/${lang}-node`)(
+              {
+                prefix: prefix,
+                secretEnvPath: secretEnvPathAbs,
+                outputEnvPath: `${environmentNodeAbsPath}.${lang}`
+              },
+              () => {
+                vorpal.logger.log(
+                  `transmute gen-node ${lang} ${prefix} ${secretEnvPathAbs} ${environmentNodeAbsPath}.${lang}`
+                );
+              }
+            );
+          })
+        );
       }
-
-      let prefix = "dapp";
-
-      let secretEnvPathAbs = path.join(
-        os.homedir(),
-        ".transmute",
-        "environment.secret.env"
-      );
-
-      let firebaseJsonConfigAbsPath = path.join(
-        os.homedir(),
-        ".transmute",
-        "firebase-client-config.json"
-      );
-
-      let environmentWebAbsPath = path.join(
-        os.homedir(),
-        ".transmute",
-        "environment.web.js"
-      );
-
-      let environmentNodeAbsPath = path.join(
-        os.homedir(),
-        ".transmute",
-        "environment.node"
-      );
-
-      let langs = ["js"];
-
-      await Promise.all(
-        langs.map(async lang => {
-          await require(`../env/generate/${lang}-web`)(
-            {
-              firebaseConfigPath: firebaseJsonConfigAbsPath,
-              outputEnvPath: `${environmentWebAbsPath}.${lang}`
-            },
-            () => {
-              vorpal.logger.log(
-                `transmute gen-web ${lang} ${environmentWebAbsPath}.${lang}`
-              );
-            }
-          );
-
-          return await require(`../env/generate/${lang}-node`)(
-            {
-              prefix: prefix,
-              secretEnvPath: secretEnvPathAbs,
-              outputEnvPath: `${environmentNodeAbsPath}.${lang}`
-            },
-            () => {
-              vorpal.logger.log(
-                `transmute gen-node ${lang} ${prefix} ${secretEnvPathAbs} ${environmentNodeAbsPath}.${lang}`
-              );
-            }
-          );
-        })
-      );
 
       callback();
     });
