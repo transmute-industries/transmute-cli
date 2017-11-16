@@ -64,6 +64,17 @@ module.exports = vorpal => {
           shell.exit(1);
         }
 
+        console.log("Compiling starter contracts...");
+        cmd = `
+                cd dapp;
+                truffle compile;
+                `;
+
+        if (shell.exec(cmd).code !== 0) {
+          vorpal.logger.fatal("Error: failed command: " + cmd);
+          shell.exit(1);
+        }
+
         vorpal.logger.info(`Star the dapp!`);
         vorpal.logger.info(`cd ${path.join(targetPath, "transmute-dapp")}`);
         vorpal.logger.info(
