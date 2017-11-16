@@ -15,9 +15,9 @@ try {
 }
 // console.log(cwd)
 try {
-  env = require(path.join(cwd, "./functions/.transmute/environment.node"));
+  env = require(path.join(cwd, "./functions/.transmute/environment.node.js"));
 } catch (e) {
-  console.warn("Error requiring ./functions/.transmute/environment.node");
+  console.warn("Error requiring ./functions/.transmute/environment.node.js");
   console.warn("Have you run `transmute setup` ?");
   console.warn("Are the paths in ./functions/.transmute/environment.secret.env correct?");
   console.warn("Have you run `transmute init` ?");

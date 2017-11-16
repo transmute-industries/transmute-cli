@@ -112,7 +112,7 @@ module.exports = vorpal => {
           await require(`../env/generate/${lang}-web`)(
             {
               firebaseConfigPath: firebaseJsonConfigAbsPath,
-              outputEnvPath: environmentWebAbsPath + `.${lang}`
+              outputEnvPath: `${environmentWebAbsPath}.${lang}`
             },
             () => {
               vorpal.logger.log(
@@ -125,7 +125,7 @@ module.exports = vorpal => {
             {
               prefix: prefix,
               secretEnvPath: secretEnvPathAbs,
-              outputEnvPath: environmentNodeAbsPath + `.${lang}`
+              outputEnvPath: `${environmentNodeAbsPath}.${lang}`
             },
             () => {
               vorpal.logger.log(

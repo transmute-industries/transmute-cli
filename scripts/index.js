@@ -26,7 +26,7 @@ module.exports = vorpal => {
     try {
       const { transmuteProductionConfig } = require(path.join(
         os.homedir(),
-        ".transmute/environment.web"
+        ".transmute/environment.web.js"
       ));
       const firebaseApp = firebase.initializeApp(
         require(path.join(
