@@ -75,11 +75,13 @@ module.exports = vorpal => {
           shell.exit(1);
         }
 
+        console.log("Overwriting default project secrets...");
         try {
           fromSecretPath = path.join(os.homedir(), ".transmute");
           cmd = `
                   cd transmute-dapp;
                   cp -R ${fromSecretPath}/* functions/.transmute/
+                  cp functions/.transmute/firebase-client-config.json dapp/src/
                   `;
           if (shell.exec(cmd).code !== 0) {
             vorpal.logger.fatal("Error: failed command: " + cmd);
